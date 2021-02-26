@@ -18,7 +18,7 @@ namespace GiftShopView
             InitializeComponent();
             this.logic = logic;
         }
-        private void FormComponent_Load(object sender, EventArgs e)
+        private void FormMaterial_Load(object sender, EventArgs e)
         {
             if (id.HasValue)
 

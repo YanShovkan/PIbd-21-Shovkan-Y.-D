@@ -29,13 +29,13 @@ namespace GiftShopView
                 try
                 {
                     int id = Convert.ToInt32(comboBoxGift.SelectedValue);
-                    GiftViewModel product = _logicG.Read(new GiftBindingModel
+                    GiftViewModel gift = _logicG.Read(new GiftBindingModel
                     {
                         Id
                     = id
                     })?[0];
                     int count = Convert.ToInt32(textBoxCount.Text);
-                    textBoxSum.Text = (count * product?.Price ?? 0).ToString();
+                    textBoxSum.Text = (count * gift?.Price ?? 0).ToString();
                 }
                 catch (Exception ex)
                 {

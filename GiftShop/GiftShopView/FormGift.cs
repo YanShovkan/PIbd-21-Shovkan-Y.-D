@@ -153,7 +153,7 @@ namespace GiftShopView
             Close();
         }
 
-        private void FormProduct_Load(object sender, EventArgs e)
+        private void FormGift_Load(object sender, EventArgs e)
         {
             if (id.HasValue)
             {
