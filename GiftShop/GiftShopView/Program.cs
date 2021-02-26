@@ -21,13 +21,13 @@ namespace GiftShopView
         private static IUnityContainer BuildUnityContainer()
         {
             var currentContainer = new UnityContainer();
-            currentContainer.RegisterType<IComponentStorage, ComponentStorage>(new
+            currentContainer.RegisterType<IMaterialStorage, MaterialStorage>(new
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<IOrderStorage, OrderStorage>(new
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<IGiftStorage, GiftStorage>(new
            HierarchicalLifetimeManager());
-            currentContainer.RegisterType<ComponentLogic>(new
+            currentContainer.RegisterType<MaterialLogic>(new
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<OrderLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<GiftLogic>(new

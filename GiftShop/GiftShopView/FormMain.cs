@@ -38,19 +38,6 @@ namespace GiftShopView
             }
         }
 
-
-        private void компонентыToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var form = Container.Resolve<FormComponents>();
-            form.ShowDialog();
-        }
-
-        private void изделияToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var form = Container.Resolve<FormGifts>();
-            form.ShowDialog();
-        }
-
         private void FormMain_Load(object sender, EventArgs e)
         {
             LoadData();
@@ -123,6 +110,18 @@ namespace GiftShopView
         private void buttonRefresh_Click(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void материалыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormMaterials>();
+            form.ShowDialog();
+        }
+
+        private void подаркиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormGifts>();
+            form.ShowDialog();
         }
     }
 }

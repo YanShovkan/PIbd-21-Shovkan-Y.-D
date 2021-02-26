@@ -10,6 +10,6 @@ namespace GiftShopBusinessLogic.ViewModels
         public string GiftName { get; set; }
         [DisplayName("Цена")]
         public decimal Price { get; set; }
-        public Dictionary<int, (string, int)> GiftComponents { get; set; }
+        public Dictionary<int, (string, int)> GiftMaterials { get; set; }
     }
 }

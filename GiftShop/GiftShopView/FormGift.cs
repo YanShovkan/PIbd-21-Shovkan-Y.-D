@@ -17,7 +17,7 @@ namespace GiftShopView
         public int Id { set { id = value; } }
         private readonly GiftLogic logic;
         private int? id;
-        private Dictionary<int, (string, int)> giftComponents;
+        private Dictionary<int, (string, int)> giftMaterials;
         public FormGift(GiftLogic service)
         {
             InitializeComponent();
@@ -28,10 +28,10 @@ namespace GiftShopView
         {
             try
             {
-                if (giftComponents != null)
+                if (giftMaterials != null)
                 {
                     dataGridView.Rows.Clear();
-                    foreach (var pc in giftComponents)
+                    foreach (var pc in giftMaterials)
                     {
                         dataGridView.Rows.Add(new object[] { pc.Key, pc.Value.Item1,
                             pc.Value.Item2 });
@@ -47,16 +47,16 @@ namespace GiftShopView
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormProductComponent>();
+            var form = Container.Resolve<FormGiftMaterial>();
             if (form.ShowDialog() == DialogResult.OK)
             {
-                if (giftComponents.ContainsKey(form.Id))
+                if (giftMaterials.ContainsKey(form.Id))
                 {
-                    giftComponents[form.Id] = (form.ComponentName, form.Count);
+                    giftMaterials[form.Id] = (form.MaterialName, form.Count);
                 }
                 else
                 {
-                    giftComponents.Add(form.Id, (form.ComponentName, form.Count));
+                    giftMaterials.Add(form.Id, (form.MaterialName, form.Count));
                 }
                 LoadData();
             }
@@ -66,13 +66,13 @@ namespace GiftShopView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormProductComponent>();
+                var form = Container.Resolve<FormGiftMaterial>();
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 form.Id = id;
-                form.Count = giftComponents[id].Item2;
+                form.Count = giftMaterials[id].Item2;
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    giftComponents[form.Id] = (form.ComponentName, form.Count);
+                    giftMaterials[form.Id] = (form.MaterialName, form.Count);
                     LoadData();
                 }
             }
@@ -88,7 +88,7 @@ namespace GiftShopView
                     try
                     {
 
-                        giftComponents.Remove(Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value));
+                        giftMaterials.Remove(Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value));
                     }
                     catch (Exception ex)
                     {
@@ -119,7 +119,7 @@ namespace GiftShopView
                MessageBoxIcon.Error);
                 return;
             }
-            if (giftComponents == null || giftComponents.Count == 0)
+            if (giftMaterials == null || giftMaterials.Count == 0)
             {
                 MessageBox.Show("Заполните компоненты", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
@@ -133,7 +133,7 @@ namespace GiftShopView
 
                     GiftName = textBoxName.Text,
                     Price = Convert.ToDecimal(textBoxPrice.Text),
-                    GiftComponents = giftComponents
+                    GiftMaterials = giftMaterials
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -167,7 +167,7 @@ namespace GiftShopView
                     {
                         textBoxName.Text = view.GiftName;
                         textBoxPrice.Text = view.Price.ToString();
-                        giftComponents = view.GiftComponents;
+                        giftMaterials = view.GiftMaterials;
                         LoadData();
                     }
                 }
@@ -179,7 +179,7 @@ namespace GiftShopView
             }
             else
             {
-                giftComponents = new Dictionary<int, (string, int)>();
+                giftMaterials = new Dictionary<int, (string, int)>();
             }
         }
     }

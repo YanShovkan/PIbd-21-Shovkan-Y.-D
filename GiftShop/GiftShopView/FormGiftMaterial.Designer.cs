@@ -1,6 +1,6 @@
 ﻿namespace GiftShopView
 {
-    partial class FormProductComponent
+    partial class FormGiftMaterial
     {
         /// <summary>
         /// Required designer variable.
@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelComponent = new System.Windows.Forms.Label();
+            this.labelMaterial = new System.Windows.Forms.Label();
             this.labelCount = new System.Windows.Forms.Label();
-            this.comboBoxComponent = new System.Windows.Forms.ComboBox();
+            this.comboBoxMaterial = new System.Windows.Forms.ComboBox();
             this.textBoxCount = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // labelComponent
+            // labelMaterial
             // 
-            this.labelComponent.AutoSize = true;
-            this.labelComponent.Location = new System.Drawing.Point(13, 13);
-            this.labelComponent.Name = "labelComponent";
-            this.labelComponent.Size = new System.Drawing.Size(66, 13);
-            this.labelComponent.TabIndex = 0;
-            this.labelComponent.Text = "Компонент:";
+            this.labelMaterial.AutoSize = true;
+            this.labelMaterial.Location = new System.Drawing.Point(13, 13);
+            this.labelMaterial.Name = "labelMaterial";
+            this.labelMaterial.Size = new System.Drawing.Size(60, 13);
+            this.labelMaterial.TabIndex = 0;
+            this.labelMaterial.Text = "Материал:";
             // 
             // labelCount
             // 
@@ -54,13 +54,13 @@
             this.labelCount.TabIndex = 1;
             this.labelCount.Text = "Количество:";
             // 
-            // comboBoxComponent
+            // comboBoxMaterial
             // 
-            this.comboBoxComponent.FormattingEnabled = true;
-            this.comboBoxComponent.Location = new System.Drawing.Point(86, 13);
-            this.comboBoxComponent.Name = "comboBoxComponent";
-            this.comboBoxComponent.Size = new System.Drawing.Size(186, 21);
-            this.comboBoxComponent.TabIndex = 2;
+            this.comboBoxMaterial.FormattingEnabled = true;
+            this.comboBoxMaterial.Location = new System.Drawing.Point(86, 13);
+            this.comboBoxMaterial.Name = "comboBoxMaterial";
+            this.comboBoxMaterial.Size = new System.Drawing.Size(186, 21);
+            this.comboBoxMaterial.TabIndex = 2;
             // 
             // textBoxCount
             // 
@@ -89,7 +89,7 @@
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
-            // FormProductComponent
+            // FormGiftMaterial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -97,11 +97,11 @@
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxCount);
-            this.Controls.Add(this.comboBoxComponent);
+            this.Controls.Add(this.comboBoxMaterial);
             this.Controls.Add(this.labelCount);
-            this.Controls.Add(this.labelComponent);
-            this.Name = "FormProductComponent";
-            this.Text = "Компонент изделия ";
+            this.Controls.Add(this.labelMaterial);
+            this.Name = "FormGiftMaterial";
+            this.Text = "Материал подарка";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -109,9 +109,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Label labelComponent;
+        private System.Windows.Forms.Label labelMaterial;
         private System.Windows.Forms.Label labelCount;
-        private System.Windows.Forms.ComboBox comboBoxComponent;
+        private System.Windows.Forms.ComboBox comboBoxMaterial;
         private System.Windows.Forms.TextBox textBoxCount;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonCancel;

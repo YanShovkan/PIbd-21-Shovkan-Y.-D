@@ -1,6 +1,6 @@
 ﻿namespace GiftShopView
 {
-    partial class FormComponent
+    partial class FormMaterial
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -70,7 +70,7 @@
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
-            // FormComponent
+            // FormMaterial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -79,8 +79,8 @@
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.labelName);
-            this.Name = "FormComponent";
-            this.Text = "Компонент";
+            this.Name = "FormMaterial";
+            this.Text = "Материал";
             this.Load += new System.EventHandler(this.FormComponent_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -6,12 +6,12 @@ namespace GiftShopListImplement
     public class DataListSingleton
     {
         private static DataListSingleton instance;
-        public List<Component> Components { get; set; }
+        public List<Material> Materials { get; set; }
         public List<Order> Orders { get; set; }
         public List<Gift> Gifts { get; set; }
         private DataListSingleton()
         {
-            Components = new List<Component>();
+            Materials = new List<Material>();
             Orders = new List<Order>();
             Gifts = new List<Gift>();
         }

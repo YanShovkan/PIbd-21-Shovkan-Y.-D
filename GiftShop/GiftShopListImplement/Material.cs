@@ -1,8 +1,8 @@
 ﻿namespace GiftShopListImplement.Models
 {
-    public class Component
+    public class Material
     {
         public int Id { get; set; }
-        public string ComponentName { get; set; }
+        public string MaterialName { get; set; }
     }
 }

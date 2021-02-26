@@ -18,9 +18,9 @@ namespace GiftShopListImplement.Implements
         public List<GiftViewModel> GetFullList()
         {
             List<GiftViewModel> result = new List<GiftViewModel>();
-            foreach (var component in source.Gifts)
+            foreach (var material in source.Gifts)
             {
-                result.Add(CreateModel(component));
+                result.Add(CreateModel(material));
             }
             return result;
         }
@@ -61,7 +61,7 @@ namespace GiftShopListImplement.Implements
             Gift tempGift = new Gift
             {
                 Id = 1,
-                GiftComponents = new
+                GiftMaterials = new
             Dictionary<int, int>()
             };
             foreach (var gift in source.Gifts)
@@ -106,26 +106,26 @@ namespace GiftShopListImplement.Implements
             gift.GiftName = model.GiftName;
             gift.Price = model.Price;
             // удаляем убранные
-            foreach (var key in gift.GiftComponents.Keys.ToList())
+            foreach (var key in gift.GiftMaterials.Keys.ToList())
             {
-                if (!model.GiftComponents.ContainsKey(key))
+                if (!model.GiftMaterials.ContainsKey(key))
                 {
-                    gift.GiftComponents.Remove(key);
+                    gift.GiftMaterials.Remove(key);
                 }
             }
             // обновляем существуюущие и добавляем новые
-            foreach (var component in model.GiftComponents)
+            foreach (var material in model.GiftMaterials)
             {
-                if (gift.GiftComponents.ContainsKey(component.Key))
+                if (gift.GiftMaterials.ContainsKey(material.Key))
                 {
-                    gift.GiftComponents[component.Key] =
-                    model.GiftComponents[component.Key].Item2;
+                    gift.GiftMaterials[material.Key] =
+                    model.GiftMaterials[material.Key].Item2;
 
                 }
                 else
                 {
-                    gift.GiftComponents.Add(component.Key,
-                    model.GiftComponents[component.Key].Item2);
+                    gift.GiftMaterials.Add(material.Key,
+                    model.GiftMaterials[material.Key].Item2);
                 }
             }
             return gift;
@@ -133,27 +133,27 @@ namespace GiftShopListImplement.Implements
         private GiftViewModel CreateModel(Gift gift)
         {
             // требуется дополнительно получить список компонентов для изделия с названиями и их количество
-            Dictionary<int, (string, int)> giftComponents = new
+            Dictionary<int, (string, int)> giftCMaterials = new
             Dictionary<int, (string, int)>();
-            foreach (var pc in gift.GiftComponents)
+            foreach (var pc in gift.GiftMaterials)
             {
-                string componentName = string.Empty;
-                foreach (var component in source.Components)
+                string materialName = string.Empty;
+                foreach (var material in source.Materials)
                 {
-                    if (pc.Key == component.Id)
+                    if (pc.Key == material.Id)
                     {
-                        componentName = component.ComponentName;
+                        materialName = material.MaterialName;
                         break;
                     }
                 }
-                giftComponents.Add(pc.Key, (componentName, pc.Value));
+                giftCMaterials.Add(pc.Key, (materialName, pc.Value));
             }
             return new GiftViewModel
             {
                 Id = gift.Id,
                 GiftName = gift.GiftName,
                 Price = gift.Price,
-                GiftComponents = giftComponents
+                GiftMaterials = giftCMaterials
             };
         }
     }

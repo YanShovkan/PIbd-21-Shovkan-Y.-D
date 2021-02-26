@@ -6,30 +6,30 @@ using System.Collections.Generic;
 
 namespace GiftShopBusinessLogic.BusinessLogics
 {
-    public class ComponentLogic
+    public class MaterialLogic
     {
-        private readonly IComponentStorage _componentStorage;
-        public ComponentLogic(IComponentStorage componentStorage)
+        private readonly IMaterialStorage _materialStorage;
+        public MaterialLogic(IMaterialStorage materialStorage)
         {
-            _componentStorage = componentStorage;
+            _materialStorage = materialStorage;
         }
-        public List<ComponentViewModel> Read(ComponentBindingModel model)
+        public List<MaterialViewModel> Read(MaterialBindingModel model)
         {
             if (model == null)
             {
-                return _componentStorage.GetFullList();
+                return _materialStorage.GetFullList();
             }
             if (model.Id.HasValue)
             {
-                return new List<ComponentViewModel> { _componentStorage.GetElement(model) };
+                return new List<MaterialViewModel> { _materialStorage.GetElement(model) };
             }
-            return _componentStorage.GetFilteredList(model);
+            return _materialStorage.GetFilteredList(model);
         }
-        public void CreateOrUpdate(ComponentBindingModel model)
+        public void CreateOrUpdate(MaterialBindingModel model)
         {
-            var element = _componentStorage.GetElement(new ComponentBindingModel
+            var element = _materialStorage.GetElement(new MaterialBindingModel
             {
-                ComponentName = model.ComponentName
+                MaterialName = model.MaterialName
             });
             if (element != null && element.Id != model.Id)
             {
@@ -37,17 +37,17 @@ namespace GiftShopBusinessLogic.BusinessLogics
             }
             if (model.Id.HasValue)
             {
-                _componentStorage.Update(model);
+                _materialStorage.Update(model);
             }
             else
             {
-                _componentStorage.Insert(model);
+                _materialStorage.Insert(model);
             }
         }
-        public void Delete(ComponentBindingModel model)
+        public void Delete(MaterialBindingModel model)
 
         {
-            var element = _componentStorage.GetElement(new ComponentBindingModel
+            var element = _materialStorage.GetElement(new MaterialBindingModel
             {
                 Id =
            model.Id
@@ -56,7 +56,7 @@ namespace GiftShopBusinessLogic.BusinessLogics
             {
                 throw new Exception("Элемент не найден");
             }
-            _componentStorage.Delete(model);
+            _materialStorage.Delete(model);
         }
     }
 }

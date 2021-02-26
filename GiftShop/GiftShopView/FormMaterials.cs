@@ -6,12 +6,12 @@ using Unity;
 
 namespace GiftShopView
 {
-    public partial class FormComponents : Form
+    public partial class FormMaterials : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-        private readonly ComponentLogic logic;
-        public FormComponents(ComponentLogic logic)
+        private readonly MaterialLogic logic;
+        public FormMaterials(MaterialLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
@@ -50,7 +50,7 @@ namespace GiftShopView
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormComponent>();
+            var form = Container.Resolve<FormMaterial>();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
@@ -61,7 +61,7 @@ namespace GiftShopView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormComponent>();
+                var form = Container.Resolve<FormMaterial>();
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -81,7 +81,7 @@ namespace GiftShopView
                    Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                     try
                     {
-                        logic.Delete(new ComponentBindingModel { Id = id });
+                        logic.Delete(new MaterialBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {

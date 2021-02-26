@@ -7,18 +7,18 @@ using Unity;
 
 namespace GiftShopView
 {
-    public partial class FormProductComponent : Form
+    public partial class FormGiftMaterial : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
        
         public int Id
         {
-            get { return Convert.ToInt32(comboBoxComponent.SelectedValue); }
-            set { comboBoxComponent.SelectedValue = value; }
+            get { return Convert.ToInt32(comboBoxMaterial.SelectedValue); }
+            set { comboBoxMaterial.SelectedValue = value; }
         }
        
-        public string ComponentName { get { return comboBoxComponent.Text; } }
+        public string MaterialName { get { return comboBoxMaterial.Text; } }
         
         public int Count
         {
@@ -29,16 +29,16 @@ namespace GiftShopView
             }
         }
 
-        public FormProductComponent(ComponentLogic logic)
+        public FormGiftMaterial(MaterialLogic logic)
         {
             InitializeComponent();
-            List<ComponentViewModel> list = logic.Read(null);
+            List<MaterialViewModel> list = logic.Read(null);
             if (list != null)
             {
-                comboBoxComponent.DisplayMember = "ComponentName";
-                comboBoxComponent.ValueMember = "Id";
-                comboBoxComponent.DataSource = list;
-                comboBoxComponent.SelectedItem = null;
+                comboBoxMaterial.DisplayMember = "MaterialName";
+                comboBoxMaterial.ValueMember = "Id";
+                comboBoxMaterial.DataSource = list;
+                comboBoxMaterial.SelectedItem = null;
             }
         }
 
@@ -50,7 +50,7 @@ namespace GiftShopView
                MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (comboBoxComponent.SelectedValue == null)
+            if (comboBoxMaterial.SelectedValue == null)
             {
                 MessageBox.Show("Выберите компонент", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);

@@ -1,6 +1,6 @@
 ﻿namespace GiftShopView
 {
-    partial class FormComponents
+    partial class FormMaterials
     {
         /// <summary>
         /// Required designer variable.
@@ -86,7 +86,7 @@
             this.buttonRefresh.UseVisualStyleBackColor = true;
             this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
-            // FormComponents
+            // FormMaterials
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -96,8 +96,8 @@
             this.Controls.Add(this.buttonEdit);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.dataGridView);
-            this.Name = "FormComponents";
-            this.Text = "Компоненты";
+            this.Name = "FormMaterials";
+            this.Text = "Материалы";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
 

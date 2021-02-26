@@ -55,17 +55,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormComponent.cs">
+    <Compile Include="FormMaterial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormComponent.Designer.cs">
-      <DependentUpon>FormComponent.cs</DependentUpon>
+    <Compile Include="FormMaterial.Designer.cs">
+      <DependentUpon>FormMaterial.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormComponents.cs">
+    <Compile Include="FormMaterials.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormComponents.Designer.cs">
-      <DependentUpon>FormComponents.cs</DependentUpon>
+    <Compile Include="FormMaterials.Designer.cs">
+      <DependentUpon>FormMaterials.cs</DependentUpon>
     </Compile>
     <Compile Include="FormCreateOrder.cs">
       <SubType>Form</SubType>
@@ -91,19 +91,19 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormProductComponent.cs">
+    <Compile Include="FormGiftMaterial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormProductComponent.Designer.cs">
-      <DependentUpon>FormProductComponent.cs</DependentUpon>
+    <Compile Include="FormGiftMaterial.Designer.cs">
+      <DependentUpon>FormGiftMaterial.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormComponent.resx">
-      <DependentUpon>FormComponent.cs</DependentUpon>
+    <EmbeddedResource Include="FormMaterial.resx">
+      <DependentUpon>FormMaterial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormComponents.resx">
-      <DependentUpon>FormComponents.cs</DependentUpon>
+    <EmbeddedResource Include="FormMaterials.resx">
+      <DependentUpon>FormMaterials.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCreateOrder.resx">
       <DependentUpon>FormCreateOrder.cs</DependentUpon>
@@ -117,8 +117,8 @@
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormProductComponent.resx">
-      <DependentUpon>FormProductComponent.cs</DependentUpon>
+    <EmbeddedResource Include="FormGiftMaterial.resx">
+      <DependentUpon>FormGiftMaterial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

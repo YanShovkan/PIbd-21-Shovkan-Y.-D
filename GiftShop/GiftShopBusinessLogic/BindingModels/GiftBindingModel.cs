@@ -7,6 +7,6 @@ namespace GiftShopBusinessLogic.BindingModels
         public int? Id { get; set; }
         public string GiftName { get; set; }
         public decimal Price { get; set; }
-        public Dictionary<int, (string, int)> GiftComponents { get; set; }
+        public Dictionary<int, (string, int)> GiftMaterials { get; set; }
     }
 }

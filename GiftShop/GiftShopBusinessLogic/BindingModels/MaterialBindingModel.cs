@@ -1,8 +1,8 @@
 ﻿namespace GiftShopBusinessLogic.BindingModels
 {
-    public class ComponentBindingModel
+    public class MaterialBindingModel
     {
         public int? Id { get; set; }
-        public string ComponentName { get; set; }
+        public string MaterialName { get; set; }
     }
 }

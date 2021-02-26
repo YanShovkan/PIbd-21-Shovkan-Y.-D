@@ -6,14 +6,14 @@ using Unity;
 
 namespace GiftShopView
 {
-    public partial class FormComponent : Form
+    public partial class FormMaterial : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }
-        private readonly ComponentLogic logic;
+        private readonly MaterialLogic logic;
         private int? id;
-        public FormComponent(ComponentLogic logic)
+        public FormMaterial(MaterialLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
@@ -25,10 +25,10 @@ namespace GiftShopView
             {
                 try
                 {
-                    var view = logic.Read(new ComponentBindingModel { Id = id })?[0];
+                    var view = logic.Read(new MaterialBindingModel { Id = id })?[0];
                     if (view != null)
                     {
-                        textBoxName.Text = view.ComponentName;
+                        textBoxName.Text = view.MaterialName;
                     }
                 }
                 catch (Exception ex)
@@ -48,10 +48,10 @@ namespace GiftShopView
             }
             try
             {
-                logic.CreateOrUpdate(new ComponentBindingModel
+                logic.CreateOrUpdate(new MaterialBindingModel
                 {
                     Id = id,
-                    ComponentName = textBoxName.Text
+                    MaterialName = textBoxName.Text
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                MessageBoxButtons.OK, MessageBoxIcon.Information);
