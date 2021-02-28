@@ -90,6 +90,11 @@ namespace GiftShopView
         {
             LoadData();
         }
+
+        private void FormGifts_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
     }
 }
 
