@@ -98,6 +98,7 @@
             this.Controls.Add(this.dataGridView);
             this.Name = "FormGifts";
             this.Text = "Подарки";
+            this.Load += new System.EventHandler(this.FormGifts_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
 
