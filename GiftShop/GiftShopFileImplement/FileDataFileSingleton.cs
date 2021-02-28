@@ -104,7 +104,7 @@ namespace GiftShopFileImplement.Models
 					{
 						order.DateImplement = Convert.ToDateTime(elem.Element("DateImplement").Value);
 					}
-	
+					list.Add(order);
 				}
 			}
 			return list;
