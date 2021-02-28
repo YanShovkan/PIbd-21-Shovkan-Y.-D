@@ -1,20 +1,20 @@
 ﻿using GiftShopBusinessLogic.BindingModels;
 using GiftShopBusinessLogic.Interfaces;
 using GiftShopBusinessLogic.ViewModels;
-using GiftShopListImplement.Models;
+using GiftShopDatabaseImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GiftShopListImplement.Implements
+namespace GiftShopDatabaseImplement.Implements
 {
     public class OrderStorage : IOrderStorage
     {
-        private readonly DataListSingleton source;
+        private readonly FileDataDatabaseSingleton source;
 
         public OrderStorage()
         {
-            source = DataListSingleton.GetInstance();
+            source = FileDataDatabaseSingleton.GetInstance();
         }
 
         public List<OrderViewModel> GetFullList()

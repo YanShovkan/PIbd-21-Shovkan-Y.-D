@@ -10,11 +10,11 @@ namespace GiftShopFileImplement.Implements
 {
     public class OrderStorage : IOrderStorage
     {
-        private readonly FileDataListSingleton source;
+        private readonly FileDataFileSingleton source;
 
         public OrderStorage()
         {
-            source = FileDataListSingleton.GetInstance();
+            source = FileDataFileSingleton.GetInstance();
         }
 
         public List<OrderViewModel> GetFullList()
@@ -110,7 +110,6 @@ namespace GiftShopFileImplement.Implements
         private Order CreateModel(OrderBindingModel model, Order order)
         {
             order.GiftId = model.GiftId;
-            order.GiftName = model.GiftName;
             order.Count = model.Count;
             order.Sum = model.Sum;
             order.Status = model.Status;
@@ -125,7 +124,6 @@ namespace GiftShopFileImplement.Implements
             {
                 Id = order.Id,
                 GiftId = order.GiftId,
-                GiftName = order.GiftName,
                 Count = order.Count,
                 Sum = order.Sum,
                 Status = order.Status,

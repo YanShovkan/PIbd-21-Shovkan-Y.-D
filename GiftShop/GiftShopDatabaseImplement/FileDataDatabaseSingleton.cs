@@ -1,5 +1,5 @@
 ﻿using GiftShopBusinessLogic.Enums;
-using GiftShopFileImplement.Models;
+using GiftShopDatabaseImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,11 +7,11 @@ using System.Linq;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-namespace GiftShopFileImplement.Models
+namespace GiftShopDatabaseImplement.Models
 {
-	public class FileDataListSingleton
+	public class FileDataDatabaseSingleton
 	{
-		private static FileDataListSingleton instance;
+		private static FileDataDatabaseSingleton instance;
 
 		private readonly string MaterialFileName = "Material.xml";
 		private readonly string OrderFileName = "Order.xml";
@@ -21,23 +21,23 @@ namespace GiftShopFileImplement.Models
 		public List<Order> Orders { get; set; }
 		public List<Gift> Gifts { get; set; }
 
-		private FileDataListSingleton()
+		private FileDataDatabaseSingleton()
 		{
 			Materials = LoadMaterials();
 			Orders = LoadOrders();
 			Gifts = LoadGifts();
 		}
 
-		public static FileDataListSingleton GetInstance()
+		public static FileDataDatabaseSingleton GetInstance()
 		{
 			if (instance == null)
 			{
-				instance = new FileDataListSingleton();
+				instance = new FileDataDatabaseSingleton();
 			}
 			return instance;
 		}
 
-		~FileDataListSingleton()
+		~FileDataDatabaseSingleton()
 		{
 			SaveMaterials();
 			SaveOrders();

@@ -1,6 +1,7 @@
 ﻿using GiftShopBusinessLogic.Enums;
 using System;
-namespace GiftShopListImplement.Models
+
+namespace GiftShopDatabaseImplement.Models
 {
     public class Order
     {

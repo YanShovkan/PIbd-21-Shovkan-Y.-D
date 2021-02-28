@@ -1,20 +1,20 @@
 ﻿using GiftShopBusinessLogic.BindingModels;
 using GiftShopBusinessLogic.Interfaces;
 using GiftShopBusinessLogic.ViewModels;
-using GiftShopFileImplement.Models;
+using GiftShopDatabaseImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GiftShopFileImplement.Implements
+namespace GiftShopDatabaseImplement.Implements
 {
 	public class GiftStorage : IGiftStorage
 	{
-		private readonly FileDataFileSingleton source;
+		private readonly FileDataDatabaseSingleton source;
 
 		public GiftStorage()
 		{
-			source = FileDataFileSingleton.GetInstance();
+			source = FileDataDatabaseSingleton.GetInstance();
 		}
 
 		public List<GiftViewModel> GetFullList()
