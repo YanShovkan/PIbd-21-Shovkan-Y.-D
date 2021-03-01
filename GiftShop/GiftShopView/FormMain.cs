@@ -14,7 +14,7 @@ namespace GiftShopView
         [Dependency]
         public new IUnityContainer Container { get; set; }
         private readonly OrderLogic _orderLogic;
-         private readonly GiftLogic _giftLogic;
+        private readonly GiftLogic _giftLogic;
         public FormMain(OrderLogic orderLogic, GiftLogic giftLogic)
         {
             InitializeComponent();
