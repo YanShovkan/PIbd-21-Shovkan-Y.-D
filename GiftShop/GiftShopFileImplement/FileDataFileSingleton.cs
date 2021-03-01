@@ -87,7 +87,6 @@ namespace GiftShopFileImplement.Models
 						case "Оплачен":
 							status = (OrderStatus)3;
 							break;
-							
 					}
 					
 					Order order = new Order
