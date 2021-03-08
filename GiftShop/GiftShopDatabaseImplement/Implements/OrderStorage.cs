@@ -5,101 +5,131 @@ using GiftShopDatabaseImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace GiftShopDatabaseImplement.Implements
 {
     public class OrderStorage : IOrderStorage
     {
-        private readonly GiftShopDatabase source;
-
-        public OrderStorage()
-        {
-            source = GiftShopDatabase.GetInstance();
-        }
-
         public List<OrderViewModel> GetFullList()
         {
-            return source.Orders
-            .Select(CreateModel)
-            .ToList();
+            using (var context = new GiftShopDatabase())
+            {
+                return context.Orders
+                    .Select(rec => new OrderViewModel
+                    {
+                        Id = rec.Id,
+                        GiftName = rec.Gift.GiftName,
+                        GiftId = rec.GiftId,
+                        Count = rec.Count,
+                        Sum = rec.Sum,
+                        Status = rec.Status,
+                        DateCreate = rec.DateCreate,
+                        DateImplement = rec.DateImplement
+                    })
+                    .ToList();
+            }
         }
-
         public List<OrderViewModel> GetFilteredList(OrderBindingModel model)
         {
             if (model == null)
             {
                 return null;
             }
-            return source.Orders
-            .Where(rec => rec.DateCreate == model.DateCreate)
-            .Select(CreateModel)
-            .ToList();
-        }
 
+            using (var context = new GiftShopDatabase())
+            {
+                return context.Orders
+                    .Where(rec => rec.GiftId == model.GiftId)
+                    .Select(rec => new OrderViewModel
+                    {
+                        Id = rec.Id,
+                        GiftName = rec.Gift.GiftName,
+                        GiftId = rec.GiftId,
+                        Count = rec.Count,
+                        Sum = rec.Sum,
+                        Status = rec.Status,
+                        DateCreate = rec.DateCreate,
+                        DateImplement = rec.DateImplement
+                    })
+                    .ToList();
+            }
+        }
         public OrderViewModel GetElement(OrderBindingModel model)
         {
             if (model == null)
             {
                 return null;
             }
-            var Order = source.Orders
-            .FirstOrDefault(rec => rec.Id == model.Id);
-            return Order != null ? CreateModel(Order) : null;
-        }
 
+            using (var context = new GiftShopDatabase())
+            {
+                var order = context.Orders
+                    .FirstOrDefault(rec => rec.Id == model.Id);
+
+                return order != null ?
+                    new OrderViewModel
+                    {
+                        Id = order.Id,
+                        GiftName = context.Gifts.FirstOrDefault(rec => rec.Id == order.GiftId)?.GiftName,
+                        GiftId = order.GiftId,
+                        Count = order.Count,
+                        Sum = order.Sum,
+                        Status = order.Status,
+                        DateCreate = order.DateCreate,
+                        DateImplement = order.DateImplement
+                    } :
+                    null;
+            }
+        }
         public void Insert(OrderBindingModel model)
         {
-            int maxId = source.Orders.Count > 0 ? source.Orders.Max(rec => rec.Id) : 0;
-            var element = new Order { Id = maxId + 1 };
-            source.Orders.Add(CreateModel(model, element));
+            using (var context = new GiftShopDatabase())
+            {
+                context.Orders.Add(CreateModel(model, new Order()));
+                context.SaveChanges();
+            }
         }
-
         public void Update(OrderBindingModel model)
         {
-            var element = source.Orders.FirstOrDefault(rec => rec.Id == model.Id);
-            if (element == null)
+            using (var context = new GiftShopDatabase())
             {
-                throw new Exception("Элемент не найден");
-            }
-            CreateModel(model, element);
-        }
+                var order = context.Orders.FirstOrDefault(rec => rec.Id == model.Id);
 
+                if (order == null)
+                {
+                    throw new Exception("Заказ не найден");
+                }
+
+                CreateModel(model, order);
+                context.SaveChanges();
+            }
+        }
         public void Delete(OrderBindingModel model)
         {
-            Order element = source.Orders.FirstOrDefault(rec => rec.Id == model.Id);
-            if (element != null)
+            using (var context = new GiftShopDatabase())
             {
-                source.Orders.Remove(element);
-            }
-            else
-            {
-                throw new Exception("Элемент не найден");
+                var order = context.Orders.FirstOrDefault(rec => rec.Id == model.Id);
+
+                if (order == null)
+                {
+                    throw new Exception("Заказ не найден");
+                }
+
+                context.Orders.Remove(order);
+                context.SaveChanges();
             }
         }
-
         private Order CreateModel(OrderBindingModel model, Order order)
         {
             order.GiftId = model.GiftId;
-            order.Count = model.Count;
             order.Sum = model.Sum;
+            order.Count = model.Count;
             order.Status = model.Status;
             order.DateCreate = model.DateCreate;
             order.DateImplement = model.DateImplement;
-            return order;
-        }
 
-        private OrderViewModel CreateModel(Order order)
-        {
-            return new OrderViewModel
-            {
-                Id = order.Id,
-                GiftId = order.GiftId,
-                Count = order.Count,
-                Sum = order.Sum,
-                Status = order.Status,
-                DateCreate = order.DateCreate,
-                DateImplement = order.DateImplement
-            };
+            return order;
         }
     }
 }
