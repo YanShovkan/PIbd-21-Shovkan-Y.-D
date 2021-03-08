@@ -10,11 +10,11 @@ namespace GiftShopDatabaseImplement.Implements
 {
 	public class GiftStorage : IGiftStorage
 	{
-		private readonly FileDataDatabaseSingleton source;
+		private readonly GiftShopDatabase source;
 
 		public GiftStorage()
 		{
-			source = FileDataDatabaseSingleton.GetInstance();
+			source = GiftShopDatabase.GetInstance();
 		}
 
 		public List<GiftViewModel> GetFullList()
