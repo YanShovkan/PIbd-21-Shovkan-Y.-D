@@ -29,17 +29,6 @@ namespace GiftShopView
                 var ordersList = _orderLogic.Read(null);
                 if (ordersList != null)
                 {
-                    var giftsList = _giftLogic.Read(null);
-                    foreach (OrderViewModel order in ordersList)
-                    {
-                        foreach(GiftViewModel gift in giftsList)
-                        {
-                            if(gift.Id == order.GiftId)
-                            {
-                                order.GiftName = gift.GiftName;
-                            }
-                        }
-                    }
                     dataGridView.DataSource = ordersList;
                     dataGridView.Columns[0].Visible = false;
                     dataGridView.Columns[1].Visible = false;
