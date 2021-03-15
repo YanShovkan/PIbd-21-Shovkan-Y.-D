@@ -97,24 +97,6 @@
     <Compile Include="FormGiftMaterial.Designer.cs">
       <DependentUpon>FormGiftMaterial.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormStorage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormStorage.Designer.cs">
-      <DependentUpon>FormStorage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormStorageReplenishment.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormStorageReplenishment.Designer.cs">
-      <DependentUpon>FormStorageReplenishment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormStorages.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormStorages.Designer.cs">
-      <DependentUpon>FormStorages.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMaterial.resx">
@@ -137,15 +119,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormGiftMaterial.resx">
       <DependentUpon>FormGiftMaterial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormStorage.resx">
-      <DependentUpon>FormStorage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormStorageReplenishment.resx">
-      <DependentUpon>FormStorageReplenishment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormStorages.resx">
-      <DependentUpon>FormStorages.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

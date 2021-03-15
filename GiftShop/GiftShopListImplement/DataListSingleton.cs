@@ -9,13 +9,11 @@ namespace GiftShopListImplement
         public List<Material> Materials { get; set; }
         public List<Order> Orders { get; set; }
         public List<Gift> Gifts { get; set; }
-        public List<Storage> Storages { get; set; }
         private DataListSingleton()
         {
             Materials = new List<Material>();
             Orders = new List<Order>();
             Gifts = new List<Gift>();
-            Storages = new List<Storage>();
         }
         public static DataListSingleton GetInstance()
         {

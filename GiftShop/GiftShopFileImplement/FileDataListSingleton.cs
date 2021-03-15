@@ -95,7 +95,6 @@ namespace GiftShopFileImplement.Models
 						{
 							Id = Convert.ToInt32(elem.Attribute("Id").Value),
 							GiftId = Convert.ToInt32(elem.Element("GiftId").Value),
-							GiftName = elem.Element("GiftName").Value,
 							Count = Convert.ToInt32(elem.Element("Count").Value),
 							Sum = Convert.ToDecimal(elem.Element("Sum").Value),
 							Status = status,
@@ -108,7 +107,6 @@ namespace GiftShopFileImplement.Models
 						{
 							Id = Convert.ToInt32(elem.Attribute("Id").Value),
 							GiftId = Convert.ToInt32(elem.Element("GiftId").Value),
-							GiftName = elem.Element("GiftName").Value,
 							Count = Convert.ToInt32(elem.Element("Count").Value),
 							Sum = Convert.ToDecimal(elem.Element("Sum").Value),
 							Status = status,
