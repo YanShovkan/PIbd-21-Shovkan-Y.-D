@@ -1,6 +1,6 @@
 ﻿using GiftShopBusinessLogic.BusinessLogics;
 using GiftShopBusinessLogic.Interfaces;
-using GiftShopListImplement.Implements;
+using GiftShopFileImplement.Implements;
 using System;
 using System.Windows.Forms;
 using Unity;
@@ -29,8 +29,7 @@ namespace GiftShopView
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<MaterialLogic>(new
            HierarchicalLifetimeManager());
-            currentContainer.RegisterType<OrderLogic>(new
-                HierarchicalLifetimeManager());
+            currentContainer.RegisterType<OrderLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<GiftLogic>(new
            HierarchicalLifetimeManager());
             return currentContainer;
