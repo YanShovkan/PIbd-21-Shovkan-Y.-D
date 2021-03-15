@@ -180,5 +180,10 @@ namespace GiftShopListImplement.Implements
                 StorageMaterials = storageMaterials
             };
         }
+
+        public bool TakeFromStorage(Dictionary<int, (string, int)> materials, int count)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
