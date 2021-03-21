@@ -10,10 +10,16 @@ namespace GiftShopBusinessLogic.BusinessLogics
     public class OrderLogic
     {
         private readonly IOrderStorage _orderStorage;
-        public OrderLogic(IOrderStorage orderStorage)
+        private readonly IGiftStorage _giftStorage;
+        private readonly IStorageStorage _storageStorage;
+       
+        public OrderLogic(IOrderStorage orderStorage, IGiftStorage giftStorage, IStorageStorage storageStorage)
         {
             _orderStorage = orderStorage;
+            _giftStorage = giftStorage;
+            _storageStorage = storageStorage;
         }
+
         public List<OrderViewModel> Read(OrderBindingModel model)
         {
             if (model == null)
@@ -31,7 +37,6 @@ namespace GiftShopBusinessLogic.BusinessLogics
             _orderStorage.Insert(new OrderBindingModel
             {
                 GiftId = model.GiftId,
-                GiftName = model.GiftName,
                 Count = model.Count,
                 Sum = model.Sum,
                 DateCreate = DateTime.Now,
@@ -53,11 +58,14 @@ namespace GiftShopBusinessLogic.BusinessLogics
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
+            if (!_storageStorage.TakeFromStorage(_giftStorage.GetElement(new GiftBindingModel { Id = order.GiftId }).GiftMaterials, order.Count))
+            {
+                throw new Exception("Недостаточно материалов для подарков");
+            }
             _orderStorage.Update(new OrderBindingModel
             {
                 Id = order.Id,
                 GiftId = order.GiftId,
-                GiftName = order.GiftName,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
@@ -83,7 +91,6 @@ namespace GiftShopBusinessLogic.BusinessLogics
             {
                 Id = order.Id,
                 GiftId = order.GiftId,
-                GiftName = order.GiftName,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
@@ -109,7 +116,6 @@ namespace GiftShopBusinessLogic.BusinessLogics
             {
                 Id = order.Id,
                 GiftId = order.GiftId,
-                GiftName = order.GiftName,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
