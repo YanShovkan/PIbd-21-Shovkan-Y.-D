@@ -120,10 +120,19 @@ namespace GiftShopFileImplement.Implements
 
         private OrderViewModel CreateModel(Order order)
         {
+            string giftName = "";
+            foreach(var gift in source.Gifts)
+            {
+                if(gift.Id == order.GiftId)
+                {
+                    giftName = gift.GiftName;
+                }
+            }
             return new OrderViewModel
             {
                 Id = order.Id,
                 GiftId = order.GiftId,
+                GiftName = giftName,
                 Count = order.Count,
                 Sum = order.Sum,
                 Status = order.Status,

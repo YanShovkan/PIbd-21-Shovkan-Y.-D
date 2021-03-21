@@ -119,7 +119,7 @@ namespace GiftShopFileImplement
                 {
                     var giftMaterials = new Dictionary<int, int>();
                     foreach (var materials in
-                   elem.Element("GiftMaterials").Elements("GiftMaterials").ToList())
+                   elem.Element("GiftMaterials").Elements("GiftMaterial").ToList())
                     {
                         giftMaterials.Add(Convert.ToInt32(materials.Element("Key").Value),
                        Convert.ToInt32(materials.Element("Value").Value));
@@ -151,9 +151,9 @@ namespace GiftShopFileImplement
                 {
                     var storageMaterials = new Dictionary<int, int>();
 
-                    foreach (var travel in storage.Element("StorageMaterials").Elements("StorageMaterial").ToList())
+                    foreach (var material in storage.Element("StorageMaterials").Elements("StorageMaterial").ToList())
                     {
-                        storageMaterials.Add(Convert.ToInt32(travel.Element("Key").Value), Convert.ToInt32(travel.Element("Value").Value));
+                        storageMaterials.Add(Convert.ToInt32(material.Element("Key").Value), Convert.ToInt32(material.Element("Value").Value));
                     }
 
                     list.Add(new Storage
@@ -206,6 +206,7 @@ namespace GiftShopFileImplement
                 xDocument.Save(OrderFileName);
             }
         }
+       
         private void SaveGifts()
         {
             if (Gifts != null)
@@ -230,6 +231,7 @@ namespace GiftShopFileImplement
                 xDocument.Save(GiftFileName);
             }
         }
+
         private void SaveStorages()
         {
             if (Storages != null)
