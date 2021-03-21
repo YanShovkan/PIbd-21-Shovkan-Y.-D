@@ -240,9 +240,11 @@
       <Project>{ad71c5fa-0997-42c9-8125-dafe27706919}</Project>
       <Name>GiftShopBusinessLogic</Name>
     </ProjectReference>
+
     <ProjectReference Include="..\GiftShopDatabaseImplement\GiftShopDatabaseImplement.csproj">
       <Project>{8d2df86a-4814-4b65-b04e-504de6662d3c}</Project>
       <Name>GiftShopDatabaseImplement</Name>
+      
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

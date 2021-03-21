@@ -98,7 +98,6 @@
             this.Controls.Add(this.dataGridView);
             this.Name = "FormMaterials";
             this.Text = "Материалы";
-            this.Load += new System.EventHandler(this.FormMaterials_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
 

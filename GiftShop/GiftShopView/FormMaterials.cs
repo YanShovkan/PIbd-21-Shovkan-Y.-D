@@ -92,10 +92,5 @@ namespace GiftShopView
                 }
             }
         }
-
-        private void FormMaterials_Load(object sender, EventArgs e)
-        {
-            LoadData();
-        }
     }
 }

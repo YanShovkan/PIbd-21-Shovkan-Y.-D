@@ -203,8 +203,7 @@
             this.groupBoxComponents.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
-
+            this.PerformLayout();		
         }
 
         #endregion
