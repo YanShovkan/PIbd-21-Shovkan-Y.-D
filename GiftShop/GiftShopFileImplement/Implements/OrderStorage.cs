@@ -10,21 +10,18 @@ namespace GiftShopFileImplement.Implements
 {
     public class OrderStorage : IOrderStorage
     {
-        private readonly FileDataListSingleton source;
+        private readonly FileDataFileSingleton source;
 
         public OrderStorage()
         {
-            source = FileDataListSingleton.GetInstance();
+            source = FileDataFileSingleton.GetInstance();
         }
 
         public List<OrderViewModel> GetFullList()
         {
-            List<OrderViewModel> result = new List<OrderViewModel>();
-            foreach (var order in source.Orders)
-            {
-                result.Add(CreateModel(order));
-            }
-            return result;
+            return source.Orders
+            .Select(CreateModel)
+            .ToList();
         }
 
         public List<OrderViewModel> GetFilteredList(OrderBindingModel model)
@@ -33,15 +30,10 @@ namespace GiftShopFileImplement.Implements
             {
                 return null;
             }
-            List<OrderViewModel> result = new List<OrderViewModel>();
-            foreach (var order in source.Orders)
-            {
-                if (order.GiftId == model.GiftId)
-                {
-                    result.Add(CreateModel(order));
-                }
-            }
-            return result;
+            return source.Orders
+            .Where(rec => rec.DateCreate == model.DateCreate)
+            .Select(CreateModel)
+            .ToList();
         }
 
         public OrderViewModel GetElement(OrderBindingModel model)
@@ -50,67 +42,44 @@ namespace GiftShopFileImplement.Implements
             {
                 return null;
             }
-            foreach (var order in source.Orders)
-            {
-                if (order.Id == model.Id || order.GiftId ==
-               model.GiftId)
-                {
-                    return CreateModel(order);
-                }
-            }
-            return null;
+            var Order = source.Orders
+            .FirstOrDefault(rec => rec.Id == model.Id);
+            return Order != null ? CreateModel(Order) : null;
         }
 
         public void Insert(OrderBindingModel model)
         {
-            Order tempOrder = new Order
-            {
-                Id = 1
-            };
-            foreach (var order in source.Orders)
-            {
-                if (order.Id >= tempOrder.Id)
-                {
-                    tempOrder.Id = order.Id + 1;
-                }
-            }
-            source.Orders.Add(CreateModel(model, tempOrder));
+            int maxId = source.Orders.Count > 0 ? source.Orders.Max(rec => rec.Id) : 0;
+            var element = new Order { Id = maxId + 1 };
+            source.Orders.Add(CreateModel(model, element));
         }
 
         public void Update(OrderBindingModel model)
         {
-            Order tempOrder = null;
-            foreach (var order in source.Orders)
-            {
-                if (order.Id == model.Id)
-                {
-                    tempOrder = order;
-                }
-            }
-            if (tempOrder == null)
+            var element = source.Orders.FirstOrDefault(rec => rec.Id == model.Id);
+            if (element == null)
             {
                 throw new Exception("Элемент не найден");
             }
-            CreateModel(model, tempOrder);
+            CreateModel(model, element);
         }
 
         public void Delete(OrderBindingModel model)
         {
-            for (int i = 0; i < source.Orders.Count; ++i)
+            Order element = source.Orders.FirstOrDefault(rec => rec.Id == model.Id);
+            if (element != null)
             {
-                if (source.Orders[i].Id == model.Id)
-                {
-                    source.Orders.RemoveAt(i);
-                    return;
-                }
+                source.Orders.Remove(element);
             }
-            throw new Exception("Элемент не найден");
+            else
+            {
+                throw new Exception("Элемент не найден");
+            }
         }
 
         private Order CreateModel(OrderBindingModel model, Order order)
         {
             order.GiftId = model.GiftId;
-            order.GiftName = model.GiftName;
             order.Count = model.Count;
             order.Sum = model.Sum;
             order.Status = model.Status;
@@ -125,7 +94,6 @@ namespace GiftShopFileImplement.Implements
             {
                 Id = order.Id,
                 GiftId = order.GiftId,
-                GiftName = order.GiftName,
                 Count = order.Count,
                 Sum = order.Sum,
                 Status = order.Status,

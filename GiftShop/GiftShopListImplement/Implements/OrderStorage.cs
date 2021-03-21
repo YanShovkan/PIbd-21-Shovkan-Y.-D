@@ -110,7 +110,6 @@ namespace GiftShopListImplement.Implements
         private Order CreateModel(OrderBindingModel model, Order order)
         {
             order.GiftId = model.GiftId;
-            order.GiftName = model.GiftName;
             order.Count = model.Count;
             order.Sum = model.Sum;
             order.Status = model.Status;
@@ -125,7 +124,6 @@ namespace GiftShopListImplement.Implements
             {
                 Id = order.Id,
                 GiftId = order.GiftId,
-                GiftName = order.GiftName,
                 Count = order.Count,
                 Sum = order.Sum,
                 Status = order.Status,

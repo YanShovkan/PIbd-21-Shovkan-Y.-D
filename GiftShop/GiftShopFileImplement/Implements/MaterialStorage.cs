@@ -10,11 +10,11 @@ namespace GiftShopFileImplement.Implements
 {
 	public class MaterialStorage : IMaterialStorage
 	{
-		private readonly FileDataListSingleton source;
+		private readonly FileDataFileSingleton source;
 
 		public MaterialStorage()
 		{
-			source = FileDataListSingleton.GetInstance();
+			source = FileDataFileSingleton.GetInstance();
 		}
 		
 		public List<MaterialViewModel> GetFullList()

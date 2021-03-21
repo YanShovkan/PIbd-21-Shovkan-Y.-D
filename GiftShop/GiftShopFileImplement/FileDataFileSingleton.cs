@@ -9,9 +9,9 @@ using System.Xml.Serialization;
 
 namespace GiftShopFileImplement.Models
 {
-	public class FileDataListSingleton
+	public class FileDataFileSingleton
 	{
-		private static FileDataListSingleton instance;
+		private static FileDataFileSingleton instance;
 
 		private readonly string MaterialFileName = "Material.xml";
 		private readonly string OrderFileName = "Order.xml";
@@ -21,23 +21,23 @@ namespace GiftShopFileImplement.Models
 		public List<Order> Orders { get; set; }
 		public List<Gift> Gifts { get; set; }
 
-		private FileDataListSingleton()
+		private FileDataFileSingleton()
 		{
 			Materials = LoadMaterials();
 			Orders = LoadOrders();
 			Gifts = LoadGifts();
 		}
 
-		public static FileDataListSingleton GetInstance()
+		public static FileDataFileSingleton GetInstance()
 		{
 			if (instance == null)
 			{
-				instance = new FileDataListSingleton();
+				instance = new FileDataFileSingleton();
 			}
 			return instance;
 		}
 
-		~FileDataListSingleton()
+		~FileDataFileSingleton()
 		{
 			SaveMaterials();
 			SaveOrders();
@@ -87,36 +87,23 @@ namespace GiftShopFileImplement.Models
 						case "Оплачен":
 							status = (OrderStatus)3;
 							break;
-							
 					}
-					if (string.IsNullOrEmpty(elem.Element("DateImplement").Value))
+					
+					Order order = new Order
 					{
-						list.Add(new Order
-						{
-							Id = Convert.ToInt32(elem.Attribute("Id").Value),
-							GiftId = Convert.ToInt32(elem.Element("GiftId").Value),
-							GiftName = elem.Element("GiftName").Value,
-							Count = Convert.ToInt32(elem.Element("Count").Value),
-							Sum = Convert.ToDecimal(elem.Element("Sum").Value),
-							Status = status,
-							DateCreate = Convert.ToDateTime(elem.Element("DateCreate").Value)
-						});
-					}
-					else
+						Id = Convert.ToInt32(elem.Attribute("Id").Value),
+						GiftId = Convert.ToInt32(elem.Element("GiftId").Value),
+						Count = Convert.ToInt32(elem.Element("Count").Value),
+						Sum = Convert.ToDecimal(elem.Element("Sum").Value),
+						Status = status,
+						DateCreate = Convert.ToDateTime(elem.Element("DateCreate").Value)
+					};
+
+					if (!string.IsNullOrEmpty(elem.Element("DateImplement").Value))
 					{
-						list.Add(new Order
-						{
-							Id = Convert.ToInt32(elem.Attribute("Id").Value),
-							GiftId = Convert.ToInt32(elem.Element("GiftId").Value),
-							GiftName = elem.Element("GiftName").Value,
-							Count = Convert.ToInt32(elem.Element("Count").Value),
-							Sum = Convert.ToDecimal(elem.Element("Sum").Value),
-							Status = status,
-							DateCreate = Convert.ToDateTime(elem.Element("DateCreate").Value),
-							DateImplement = Convert.ToDateTime(elem.Element("DateImplement").Value)
-						});
+						order.DateImplement = Convert.ToDateTime(elem.Element("DateImplement").Value);
 					}
-						
+					list.Add(order);
 				}
 			}
 			return list;
@@ -176,7 +163,6 @@ namespace GiftShopFileImplement.Models
 						xElement.Add(new XElement("Order",
 					 new XAttribute("Id", order.Id),
 					 new XElement("GiftId", order.GiftId),
-					 new XElement("GiftName", order.GiftName),
 					 new XElement("Count", order.Count),
 					 new XElement("Sum", order.Sum),
 					 new XElement("Status", order.Status),
