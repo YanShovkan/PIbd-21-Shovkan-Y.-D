@@ -107,7 +107,7 @@
             // 
             this.списокМатериаловToolStripMenuItem.Name = "списокМатериаловToolStripMenuItem";
             this.списокМатериаловToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
-            this.списокМатериаловToolStripMenuItem.Text = "Список материалов";
+            this.списокМатериаловToolStripMenuItem.Text = "Список подарков";
             this.списокМатериаловToolStripMenuItem.Click += new System.EventHandler(this.списокМатериаловToolStripMenuItem_Click);
             // 
             // материалыПоПодаркамToolStripMenuItem

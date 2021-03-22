@@ -80,7 +80,7 @@ namespace GiftShopBusinessLogic.BusinessLogics
             SaveToWord.CreateDoc(new WordInfo
             {
                 FileName = model.FileName,
-                Title = "Список материалов",
+                Title = "Список подарков",
                 Gifts = _giftStorage.GetFullList()
             });
         }
@@ -93,7 +93,7 @@ namespace GiftShopBusinessLogic.BusinessLogics
             SaveToExcel.CreateDoc(new ExcelInfo
             {
                 FileName = model.FileName,
-                Title = "Список изделий",
+                Title = "Список материалов",
                 GiftMaterials = GetGiftMaterial()
             });
         }
