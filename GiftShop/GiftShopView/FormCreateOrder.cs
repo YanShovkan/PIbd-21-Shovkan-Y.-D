@@ -93,7 +93,6 @@ namespace GiftShopView
             {
                 _logicO.CreateOrder(new CreateOrderBindingModel
                 {
-                    GiftName = comboBoxGift.Text,
                     GiftId = Convert.ToInt32(comboBoxGift.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToDecimal(textBoxSum.Text)
