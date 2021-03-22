@@ -19,6 +19,6 @@ namespace GiftShopBusinessLogic.Interfaces
 
         void Delete(StorageBindingModel model);
 
-        bool TakeFromStorage(Dictionary<int, (string, int)> materials, int count);
+        void CheckMaterials(GiftViewModel model, int materialCountInOrder);
     }
 }

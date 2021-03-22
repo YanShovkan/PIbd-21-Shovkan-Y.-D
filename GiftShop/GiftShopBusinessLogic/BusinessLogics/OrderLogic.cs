@@ -58,10 +58,13 @@ namespace GiftShopBusinessLogic.BusinessLogics
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
-            if (!_storageStorage.TakeFromStorage(_giftStorage.GetElement(new GiftBindingModel { Id = order.GiftId }).GiftMaterials, order.Count))
+
+            var gift = _giftStorage.GetElement(new GiftBindingModel
             {
-                throw new Exception("Недостаточно материалов для подарков");
-            }
+                Id = order.GiftId
+            });
+
+            _storageStorage.CheckMaterials(gift, order.Count);
             _orderStorage.Update(new OrderBindingModel
             {
                 Id = order.Id,

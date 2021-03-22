@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанные со сборкой.
-[assembly: AssemblyTitle("GiftShopFileImplement")]
+[assembly: AssemblyTitle("GiftShopDatabaseImplement")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("GiftShopFileImplement")]
+[assembly: AssemblyProduct("GiftShopDatabaseImplement")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("74c74f45-3c80-41f6-b4d5-c7b46ee7ad9e")]
+[assembly: Guid("5854898c-9135-45b0-b983-b39b1adc4a3c")]
 
 // Сведения о версии сборки состоят из указанных ниже четырех значений:
 //
