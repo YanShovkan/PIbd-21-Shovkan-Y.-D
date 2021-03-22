@@ -4,13 +4,13 @@ using System.ComponentModel;
 
 namespace GiftShopBusinessLogic.ViewModels
 {
-    public class ReportProductComponentViewModel
+    public class ReportGiftMaterialViewModel
     {
-        [DisplayName("Имя метериала")]
-        public string MaterialName { get; set; }
+        [DisplayName("Имя подарка")]
+        public string GiftName { get; set; }
         [DisplayName("Итоговое количество")]
         public int TotalCount { get; set; }
-        public List<Tuple<string, int>> Gifts { get; set; }
+        public List<Tuple<string, int>> Materials { get; set; }
     }
 }
 

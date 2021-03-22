@@ -10,28 +10,25 @@ namespace GiftShopBusinessLogic.BusinessLogics
     {
         public static void CreateDoc(WordInfo info)
         {
-            using (WordprocessingDocument wordDocument =
-           WordprocessingDocument.Create(info.FileName, WordprocessingDocumentType.Document))
+            using (WordprocessingDocument wordDocument = WordprocessingDocument.Create(info.FileName, WordprocessingDocumentType.Document))
             {
                 MainDocumentPart mainPart = wordDocument.AddMainDocumentPart();
                 mainPart.Document = new Document();
                 Body docBody = mainPart.Document.AppendChild(new Body());
                 docBody.AppendChild(CreateParagraph(new WordParagraph
                 {
-                    Texts = new List<(string, WordTextProperties)> { (info.Title, new
-WordTextProperties {Bold = true, Size = "24", } ) },
+                    Texts = new List<(string, WordTextProperties)> { (info.Title, new WordTextProperties { Bold = true, Size = "24", }) },
                     TextProperties = new WordTextProperties
                     {
                         Size = "24",
                         JustificationValues = JustificationValues.Center
                     }
                 }));
-                foreach (var material in info.Maetrials)
+                foreach (var gift in info.Gifts)
                 {
                     docBody.AppendChild(CreateParagraph(new WordParagraph
                     {
-                        Texts = new List<(string, WordTextProperties)> {
-(material.MaterialName, new WordTextProperties { Size = "24", }) },
+                        Texts = new List<(string, WordTextProperties)> { ($"{gift.GiftName}: ", new WordTextProperties { Size = "24", Bold = true }), (gift.Price.ToString(), new WordTextProperties { Size = "24" }) },
                         TextProperties = new WordTextProperties
                         {
                             Size = "24",

@@ -24,34 +24,31 @@ namespace GiftShopBusinessLogic.BusinessLogics
         /// Получение списка компонент с указанием, в каких изделиях используются
         /// </summary>
         /// <returns></returns>104
-        public List<ReportProductComponentViewModel> GetProductComponent()
+        public List<ReportGiftMaterialViewModel> GetGiftMaterial()
         {
             var materials = _materialStorage.GetFullList();
             var gifts = _giftStorage.GetFullList();
-            var list = new List<ReportProductComponentViewModel>();
-            foreach (var material in materials)
+            var list = new List<ReportGiftMaterialViewModel>();
+            foreach (var gift in gifts)
             {
-                var record = new ReportProductComponentViewModel
+                var record = new ReportGiftMaterialViewModel
                 {
-                    MaterialName = material.MaterialName,
-                    Gifts = new List<Tuple<string, int>>(),
+                    GiftName = gift.GiftName,
+                    Materials = new List<Tuple<string, int>>(),
                     TotalCount = 0
                 };
-                foreach (var gift in gifts)
+                foreach (var material in materials)
                 {
                     if (gift.GiftMaterials.ContainsKey(material.Id))
                     {
-                        record.Gifts.Add(new Tuple<string, int>(gift.GiftName,
-                       gift.GiftMaterials[material.Id].Item2));
-                        record.TotalCount +=
-                       gift.GiftMaterials[material.Id].Item2;
+                        record.Materials.Add(new Tuple<string, int>(material.MaterialName, gift.GiftMaterials[material.Id].Item2));
+                        record.TotalCount += gift.GiftMaterials[material.Id].Item2;
                     }
                 }
                 list.Add(record);
             }
             return list;
         }
-        /// <summary>
         /// Получение списка заказов за определенный период
         /// </summary>
         /// <param name="model"></param>
@@ -78,26 +75,26 @@ namespace GiftShopBusinessLogic.BusinessLogics
         /// Сохранение компонент в файл-Word
         /// </summary>
         /// <param name="model"></param>
-        public void SaveComponentsToWordFile(ReportBindingModel model)
+        public void SaveMaterialsToWordFile(ReportBindingModel model)
         {
             SaveToWord.CreateDoc(new WordInfo
             {
                 FileName = model.FileName,
                 Title = "Список материалов",
-                Maetrials = _materialStorage.GetFullList()
+                Gifts = _giftStorage.GetFullList()
             });
         }
         /// <summary>
         /// Сохранение компонент с указаеним продуктов в файл-Excel
         /// </summary>
         /// <param name="model"></param>
-        public void SaveProductComponentToExcelFile(ReportBindingModel model)
+        public void SaveGiftsMaterialsToExcelFile(ReportBindingModel model)
         {
             SaveToExcel.CreateDoc(new ExcelInfo
             {
                 FileName = model.FileName,
-                Title = "Список материалов",
-                GiftMaterials = GetProductComponent()
+                Title = "Список изделий",
+                GiftMaterials = GetGiftMaterial()
             });
         }
         /// <summary>

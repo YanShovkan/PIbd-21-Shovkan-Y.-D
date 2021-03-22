@@ -1,5 +1,5 @@
 ﻿
-namespace AbstractShopView
+namespace GiftShopView
 {
     partial class FormReportGiftMaterials
     {

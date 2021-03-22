@@ -3,7 +3,8 @@ using GiftShopBusinessLogic.BusinessLogics;
 using System;
 using System.Windows.Forms;
 using Unity;
-namespace AbstractShopView
+
+namespace GiftShopView
 {
     public partial class FormReportGiftMaterials : Form
     {
@@ -20,14 +21,14 @@ namespace AbstractShopView
         {
             try
             {
-                var dict = logic.GetProductComponent();
+                var dict = logic.GetGiftMaterial();
                 if (dict != null)
                 {
                     dataGridView.Rows.Clear();
                     foreach (var elem in dict)
                     {
-                        dataGridView.Rows.Add(new object[] { elem.MaterialName, "", "" });
-                        foreach (var listElem in elem.Gifts)
+                        dataGridView.Rows.Add(new object[] { elem.GiftName, "", "" });
+                        foreach (var listElem in elem.Materials)
                         {
                             dataGridView.Rows.Add(new object[] { "", listElem.Item1, listElem.Item2 });
                         }
@@ -51,7 +52,7 @@ namespace AbstractShopView
                 {
                     try
                     {
-                        logic.SaveProductComponentToExcelFile(new ReportBindingModel
+                        logic.SaveGiftsMaterialsToExcelFile(new ReportBindingModel
                         {
                             FileName = dialog.FileName
                         });

@@ -38,7 +38,10 @@ namespace GiftShopListImplement.Implements
             {
                 if (order.GiftId == model.GiftId)
                 {
-                    result.Add(CreateModel(order));
+                    if (order.DateCreate >= model.DateFrom && order.DateCreate <= model.DateTo)
+                    {
+                        result.Add(CreateModel(order));
+                    }
                 }
             }
             return result;
