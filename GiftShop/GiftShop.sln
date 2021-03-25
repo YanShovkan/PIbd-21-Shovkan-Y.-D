@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftShopView", "GiftShopView\GiftShopView.csproj", "{40DA13FD-16A5-4487-AE4C-A8D72175780C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftShopBusinessLogic", "GiftShopBusinessLogic\GiftShopBusinessLogic.csproj", "{AD71C5FA-0997-42C9-8125-DAFE27706919}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GiftShopBusinessLogic", "GiftShopBusinessLogic\GiftShopBusinessLogic.csproj", "{AD71C5FA-0997-42C9-8125-DAFE27706919}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftShopListImplement", "GiftShopListImplement\GiftShopListImplement.csproj", "{A625854D-4917-49C0-8174-F890D45561D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GiftShopListImplement", "GiftShopListImplement\GiftShopListImplement.csproj", "{A625854D-4917-49C0-8174-F890D45561D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftShopFileImplement", "GiftShopFileImplement\GiftShopFileImplement.csproj", "{0C1AF26B-9483-4A73-B36F-125EB67710B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{A625854D-4917-49C0-8174-F890D45561D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A625854D-4917-49C0-8174-F890D45561D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A625854D-4917-49C0-8174-F890D45561D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C1AF26B-9483-4A73-B36F-125EB67710B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C1AF26B-9483-4A73-B36F-125EB67710B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C1AF26B-9483-4A73-B36F-125EB67710B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C1AF26B-9483-4A73-B36F-125EB67710B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
