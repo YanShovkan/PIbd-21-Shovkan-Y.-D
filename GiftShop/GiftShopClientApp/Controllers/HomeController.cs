@@ -37,7 +37,13 @@ namespace GiftShopClientApp.Controllers
             if (!string.IsNullOrEmpty(login) && !string.IsNullOrEmpty(password)
             && !string.IsNullOrEmpty(fio))
             {
-                //прописать запрос
+                APIClient.PostRequest("api/client/updatedata", new ClientBindingModel
+                {
+                    Id = Program.Client.Id,
+                    ClientFIO = fio,
+                    Email = login,
+                    Password = password
+                });
                 Program.Client.ClientFIO = fio;
                 Program.Client.Email = login;
                 Program.Client.Password = password;
@@ -103,7 +109,7 @@ namespace GiftShopClientApp.Controllers
         public IActionResult Create()
         {
             ViewBag.Gifts =
-            APIClient.GetRequest<List<GiftViewModel>>("api/main/getproductlist");
+            APIClient.GetRequest<List<GiftViewModel>>("api/main/getgiftlist");
             return View();
         }
         [HttpPost]
@@ -113,15 +119,20 @@ namespace GiftShopClientApp.Controllers
             {
                 return;
             }
-            //прописать запрос
+            APIClient.PostRequest("api/main/createorder", new CreateOrderBindingModel
+            {
+                GiftId = gift,
+                ClientId = Program.Client.Id,
+                Sum = sum,
+                Count = count
+            });
             Response.Redirect("Index");
         }
         [HttpPost]
         public decimal Calc(decimal count, int gift)
         {
-
             GiftViewModel prod =
-            APIClient.GetRequest<GiftViewModel>($"api/main/getproduct?productId={gift}");
+            APIClient.GetRequest<GiftViewModel>($"api/main/getgift?giftId={gift}");
             return count * prod.Price;
         }
     }

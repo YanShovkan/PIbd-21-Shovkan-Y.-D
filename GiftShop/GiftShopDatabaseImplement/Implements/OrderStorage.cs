@@ -15,20 +15,9 @@ namespace GiftShopDatabaseImplement.Implements
         {
             using (var context = new GiftShopDatabase())
             {
-                return context.Orders
-                    .Include(rec => rec.Gift)
-                    .Select(rec => new OrderViewModel
-                    {
-                        Id = rec.Id,
-                        GiftName = rec.Gift.GiftName,
-                        GiftId = rec.GiftId,
-                        Count = rec.Count,
-                        Sum = rec.Sum,
-                        Status = rec.Status,
-                        DateCreate = rec.DateCreate,
-                        DateImplement = rec.DateImplement
-                    })
-                    .ToList();
+                return context.Orders.Include(rec => rec.Gift)
+                    .Include(rec => rec.Client)
+                    .Select(CreateModel).ToList();
             }
         }
         public List<OrderViewModel> GetFilteredList(OrderBindingModel model)

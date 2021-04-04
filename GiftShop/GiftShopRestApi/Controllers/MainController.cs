@@ -28,7 +28,7 @@ namespace GiftShopRestApi.Controllers
         public List<GiftViewModel> GetGiftList() => _gift.Read(null)?.ToList();
 
         [HttpGet]
-        public GiftViewModel GetGift(int carId) => _gift.Read(new GiftBindingModel { Id = carId })?[0];
+        public GiftViewModel GetGift(int giftId) => _gift.Read(new GiftBindingModel { Id = giftId })?[0];
 
         [HttpGet]
         public List<OrderViewModel> GetOrders(int clientId) => _order.Read(new OrderBindingModel { ClientId = clientId });
