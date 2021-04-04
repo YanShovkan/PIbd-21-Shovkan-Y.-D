@@ -114,8 +114,8 @@ namespace GiftShopListImplement.Implements
         {
             order.GiftId = model.GiftId;
             order.Count = model.Count;
-            order.Sum = model.Sum;
             order.Status = model.Status;
+            order.Sum = model.Sum;
             order.DateCreate = model.DateCreate;
             order.DateImplement = model.DateImplement;
             return order;
@@ -127,6 +127,7 @@ namespace GiftShopListImplement.Implements
             {
                 Id = order.Id,
                 GiftId = order.GiftId,
+                GiftName = source.Gifts.FirstOrDefault(gift => gift.Id == order.GiftId).GiftName,
                 Count = order.Count,
                 Sum = order.Sum,
                 Status = order.Status,
