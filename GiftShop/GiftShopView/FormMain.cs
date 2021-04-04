@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
-using GiftShopBusinessLogic.BindingModels;
+﻿using GiftShopBusinessLogic.BindingModels;
 using GiftShopBusinessLogic.BusinessLogics;
-using GiftShopBusinessLogic.ViewModels;
 using System;
 using System.Windows.Forms;
 using Unity;
@@ -14,13 +11,11 @@ namespace GiftShopView
         [Dependency]
         public new IUnityContainer Container { get; set; }
         private readonly OrderLogic _orderLogic;
-        private readonly GiftLogic _giftLogic;
         private readonly ReportLogic _reportLogic;
-        public FormMain(OrderLogic orderLogic, GiftLogic giftLogic, ReportLogic reportLogic)
+        public FormMain(OrderLogic orderLogic, ReportLogic reportLogic)
         {
             InitializeComponent();
             this._orderLogic = orderLogic;
-            this._giftLogic = giftLogic;
             this._reportLogic = reportLogic;
         }
 
@@ -34,6 +29,7 @@ namespace GiftShopView
                     dataGridView.DataSource = ordersList;
                     dataGridView.Columns[0].Visible = false;
                     dataGridView.Columns[1].Visible = false;
+                    dataGridView.Columns[2].Visible = false;
                 }
             }
             catch (Exception ex)
