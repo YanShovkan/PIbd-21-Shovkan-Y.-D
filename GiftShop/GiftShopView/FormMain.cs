@@ -17,6 +17,7 @@ namespace GiftShopView
             InitializeComponent();
             this._orderLogic = orderLogic;
             this._reportLogic = reportLogic;
+            LoadData();
         }
 
         private void LoadData()
@@ -37,11 +38,6 @@ namespace GiftShopView
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
             }
-        }
-
-        private void FormMain_Load(object sender, EventArgs e)
-        {
-            LoadData();
         }
 
         private void buttonCreateOrder_Click(object sender, EventArgs e)

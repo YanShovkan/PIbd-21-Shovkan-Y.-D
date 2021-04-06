@@ -55,19 +55,7 @@ namespace GiftShopDatabaseImplement.Implements
                     .FirstOrDefault(rec => rec.Id == model.Id);
 
                 return order != null ?
-                    new OrderViewModel
-                    {
-                        Id = order.Id,
-                        GiftName = order.Gift.GiftName,
-                        GiftId = order.GiftId,
-                        ClientId = order.ClientId,
-                        ClientFIO = order.Client.ClientFIO,
-                        Count = order.Count,
-                        Sum = order.Sum,
-                        Status = order.Status,
-                        DateCreate = order.DateCreate,
-                        DateImplement = order.DateImplement
-                    } :
+                    CreateModel(order) :
                     null;
             }
         }
@@ -123,6 +111,7 @@ namespace GiftShopDatabaseImplement.Implements
                 Status = order.Status,
                 DateCreate = order.DateCreate,
                 DateImplement = order?.DateImplement
+
             };
         }
 
