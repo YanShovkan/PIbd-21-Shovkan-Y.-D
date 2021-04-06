@@ -14,11 +14,41 @@ namespace GiftShopView
         public new IUnityContainer Container { get; set; }
         private readonly GiftLogic _logicG;
         private readonly OrderLogic _logicO;
-        public FormCreateOrder(GiftLogic logicG, OrderLogic logicO)
+        private readonly ClientLogic _logicC;
+        public FormCreateOrder(GiftLogic logicG, OrderLogic logicO, ClientLogic logicC)
         {
             InitializeComponent();
             _logicG = logicG;
             _logicO = logicO;
+            _logicC = logicC;
+        }
+
+        private void FormCreateOrder_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                List<GiftViewModel> listGifts = _logicG.Read(null);
+                if (listGifts != null)
+                {
+                    comboBoxGift.DisplayMember = "GiftName";
+                    comboBoxGift.ValueMember = "Id";
+                    comboBoxGift.DataSource = listGifts;
+                    comboBoxGift.SelectedItem = null;
+                }
+                List<ClientViewModel> listClients = _logicC.Read(null);
+                if (listClients != null)
+                {
+                    comboBoxClient.DisplayMember = "ClientFIO";
+                    comboBoxClient.ValueMember = "Id";
+                    comboBoxClient.DataSource = listClients;
+                    comboBoxClient.SelectedItem = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+               MessageBoxIcon.Error);
+            }
         }
 
         private void CalcSum()
@@ -42,26 +72,6 @@ namespace GiftShopView
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
                    MessageBoxIcon.Error);
                 }
-            }
-        }
-
-        private void FormCreateOrder_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                List<GiftViewModel> list = _logicG.Read(null);
-                if (list != null)
-                {
-                    comboBoxGift.DisplayMember = "GiftName";
-                    comboBoxGift.ValueMember = "Id";
-                    comboBoxGift.DataSource = list;
-                    comboBoxGift.SelectedItem = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
             }
         }
 
@@ -89,10 +99,17 @@ namespace GiftShopView
                MessageBoxIcon.Error);
                 return;
             }
+            if (comboBoxClient.SelectedValue == null)
+            {
+                MessageBox.Show("Выберите клиента", "Ошибка", MessageBoxButtons.OK,
+               MessageBoxIcon.Error);
+                return;
+            }
             try
             {
                 _logicO.CreateOrder(new CreateOrderBindingModel
                 {
+                    ClientId = Convert.ToInt32(comboBoxClient.SelectedValue),
                     GiftId = Convert.ToInt32(comboBoxGift.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToDecimal(textBoxSum.Text)

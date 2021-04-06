@@ -2,13 +2,6 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="SushiBarBusinessLogicViewModels">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>9daab7ac-96b9-422b-9823-013c58790711</rd:DataSourceID>
-    </DataSource>
     <DataSource Name="GiftShopBusinessLogicViewModels">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>

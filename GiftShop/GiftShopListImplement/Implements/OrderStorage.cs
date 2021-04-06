@@ -40,7 +40,10 @@ namespace GiftShopListImplement.Implements
                 {
                     if (order.DateCreate >= model.DateFrom && order.DateCreate <= model.DateTo)
                     {
-                        result.Add(CreateModel(order));
+                        if(order.ClientId == model.ClientId)
+                        {
+                            result.Add(CreateModel(order));
+                        }
                     }
                 }
             }
@@ -114,8 +117,8 @@ namespace GiftShopListImplement.Implements
         {
             order.GiftId = model.GiftId;
             order.Count = model.Count;
-            order.Sum = model.Sum;
             order.Status = model.Status;
+            order.Sum = model.Sum;
             order.DateCreate = model.DateCreate;
             order.DateImplement = model.DateImplement;
             return order;
@@ -123,10 +126,19 @@ namespace GiftShopListImplement.Implements
 
         private OrderViewModel CreateModel(Order order)
         {
+            string giftName = null;
+            foreach(var gift in source.Gifts)
+            {
+                if (gift.Id == order.GiftId)
+                {
+                    giftName = gift.GiftName;
+                }
+            }
             return new OrderViewModel
             {
                 Id = order.Id,
                 GiftId = order.GiftId,
+                GiftName = giftName,
                 Count = order.Count,
                 Sum = order.Sum,
                 Status = order.Status,

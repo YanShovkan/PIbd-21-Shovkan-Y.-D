@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
-using GiftShopBusinessLogic.BindingModels;
+﻿using GiftShopBusinessLogic.BindingModels;
 using GiftShopBusinessLogic.BusinessLogics;
-using GiftShopBusinessLogic.ViewModels;
 using System;
 using System.Windows.Forms;
 using Unity;
@@ -14,14 +11,13 @@ namespace GiftShopView
         [Dependency]
         public new IUnityContainer Container { get; set; }
         private readonly OrderLogic _orderLogic;
-        private readonly GiftLogic _giftLogic;
         private readonly ReportLogic _reportLogic;
-        public FormMain(OrderLogic orderLogic, GiftLogic giftLogic, ReportLogic reportLogic)
+        public FormMain(OrderLogic orderLogic, ReportLogic reportLogic)
         {
             InitializeComponent();
             this._orderLogic = orderLogic;
-            this._giftLogic = giftLogic;
             this._reportLogic = reportLogic;
+            LoadData();
         }
 
         private void LoadData()
@@ -34,6 +30,7 @@ namespace GiftShopView
                     dataGridView.DataSource = ordersList;
                     dataGridView.Columns[0].Visible = false;
                     dataGridView.Columns[1].Visible = false;
+                    dataGridView.Columns[2].Visible = false;
                 }
             }
             catch (Exception ex)
@@ -41,11 +38,6 @@ namespace GiftShopView
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
             }
-        }
-
-        private void FormMain_Load(object sender, EventArgs e)
-        {
-            LoadData();
         }
 
         private void buttonCreateOrder_Click(object sender, EventArgs e)
@@ -154,6 +146,12 @@ namespace GiftShopView
         private void списокЗаказовToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormReportOrders>();
+            form.ShowDialog();
+        }
+
+        private void клиентыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormClients>();
             form.ShowDialog();
         }
     }
