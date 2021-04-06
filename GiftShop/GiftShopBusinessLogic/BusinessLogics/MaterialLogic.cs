@@ -33,7 +33,7 @@ namespace GiftShopBusinessLogic.BusinessLogics
             });
             if (element != null && element.Id != model.Id)
             {
-                throw new Exception("Уже есть компонент с таким названием");
+                throw new Exception("Уже есть материал с таким названием");
             }
             if (model.Id.HasValue)
             {
