@@ -50,6 +50,7 @@ namespace GiftShopDatabaseImplement.Implements
             using (var context = new GiftShopDatabase())
             {
                 var order = context.Orders
+                    .Include(rec => rec.Client)
                     .Include(rec => rec.Gift)
                     .FirstOrDefault(rec => rec.Id == model.Id);
 
@@ -57,8 +58,10 @@ namespace GiftShopDatabaseImplement.Implements
                     new OrderViewModel
                     {
                         Id = order.Id,
-                        GiftName = context.Gifts.FirstOrDefault(rec => rec.Id == order.GiftId)?.GiftName,
+                        GiftName = order.Gift.GiftName,
                         GiftId = order.GiftId,
+                        ClientId = order.ClientId,
+                        ClientFIO = order.Client.ClientFIO,
                         Count = order.Count,
                         Sum = order.Sum,
                         Status = order.Status,
@@ -126,7 +129,7 @@ namespace GiftShopDatabaseImplement.Implements
         private Order CreateModel(OrderBindingModel model, Order order)
         {
             order.GiftId = model.GiftId;
-            order.ClientId = Convert.ToInt32(model.ClientId);
+            order.ClientId = model.ClientId.Value;
             order.Count = model.Count;
             order.Status = model.Status;
             order.Sum = model.Sum;

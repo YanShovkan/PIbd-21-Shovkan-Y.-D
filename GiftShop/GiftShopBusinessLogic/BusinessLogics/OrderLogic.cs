@@ -57,6 +57,7 @@ namespace GiftShopBusinessLogic.BusinessLogics
             {
                 Id = order.Id,
                 GiftId = order.GiftId,
+                ClientId = order.ClientId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
@@ -79,10 +80,11 @@ namespace GiftShopBusinessLogic.BusinessLogics
             {
                 Id = order.Id,
                 GiftId = order.GiftId,
+                ClientId = order.ClientId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
-                DateImplement = order.DateImplement,
+                DateImplement = DateTime.Now,
                 Status = OrderStatus.Готов
             });
         }
@@ -102,10 +104,11 @@ namespace GiftShopBusinessLogic.BusinessLogics
             {
                 Id = order.Id,
                 GiftId = order.GiftId,
+                ClientId = order.ClientId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
-                DateImplement = DateTime.Now,
+                DateImplement = order.DateImplement,
                 Status = OrderStatus.Оплачен
             });
         }
