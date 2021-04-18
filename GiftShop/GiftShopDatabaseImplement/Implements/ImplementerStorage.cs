@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace GiftShopDatabaseImplement.Implements
 {
-    class ImplementerStorage : IImplementerStorage
+    public class ImplementerStorage : IImplementerStorage
     {
         public List<ImplementerViewModel> GetFullList()
         {

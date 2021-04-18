@@ -1,4 +1,5 @@
 ﻿using GiftShopBusinessLogic.BindingModels;
+using GiftShopBusinessLogic.Enums;
 using GiftShopBusinessLogic.Interfaces;
 using GiftShopBusinessLogic.ViewModels;
 using GiftShopDatabaseImplement.Models;
@@ -34,11 +35,16 @@ namespace GiftShopDatabaseImplement.Implements
                     .Include(rec => rec.Gift)
                     .Include(rec => rec.Client)
                     .Include(rec => rec.Implementer)
-                    .Where(rec => (!model.DateFrom.HasValue &&
-                    !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date) ||
-                    (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >=
-                    model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date) ||
-                    (model.ClientId.HasValue && rec.ClientId == model.ClientId))
+                    .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue &&
+                    rec.DateCreate.Date == model.DateCreate.Date) ||
+                     (model.DateFrom.HasValue && model.DateTo.HasValue &&
+                    rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <=
+                    model.DateTo.Value.Date) ||
+                     (model.ClientId.HasValue && rec.ClientId == model.ClientId) ||
+                    (model.FreeOrders.HasValue && model.FreeOrders.Value && rec.Status ==
+                    OrderStatus.Принят) ||
+                     (model.ImplementerId.HasValue && rec.ImplementerId ==
+                    model.ImplementerId && rec.Status == OrderStatus.Выполняется))
                     .Select(CreateModel).ToList();
             }
         }
@@ -53,8 +59,8 @@ namespace GiftShopDatabaseImplement.Implements
             using (var context = new GiftShopDatabase())
             {
                 var order = context.Orders
-                    .Include(rec => rec.Client)
                     .Include(rec => rec.Gift)
+                    .Include(rec => rec.Client)
                     .Include(rec => rec.Implementer)
                     .FirstOrDefault(rec => rec.Id == model.Id);
 
@@ -108,7 +114,7 @@ namespace GiftShopDatabaseImplement.Implements
                 Id = order.Id,
                 GiftId = order.GiftId,
                 ClientId = order.ClientId.Value,
-                ImplementerId = order.ImplementerId.Value,
+                ImplementerId = order.ImplementerId,
                 ClientFIO = order.Client.ClientFIO,
                 GiftName = order.Gift.GiftName,
                 Count = order.Count,
@@ -116,7 +122,8 @@ namespace GiftShopDatabaseImplement.Implements
                 Status = order.Status,
                 DateCreate = order.DateCreate,
                 DateImplement = order?.DateImplement,
-                ImplementerName = order.Implementer?.Name
+                ImplementerName = order.ImplementerId.HasValue ?
+                    order.Implementer.Name : string.Empty
             };
         }
 
@@ -124,7 +131,7 @@ namespace GiftShopDatabaseImplement.Implements
         {
             order.GiftId = model.GiftId;
             order.ClientId = model.ClientId.Value;
-            order.ImplementerId = model.ImplementerId.Value;
+            order.ImplementerId = model.ImplementerId;
             order.Count = model.Count;
             order.Status = model.Status;
             order.Sum = model.Sum;

@@ -15,7 +15,7 @@ namespace GiftShopBusinessLogic.ViewModels
         [DataMember]
         public int GiftId { get; set; }
         [DataMember]
-        public int ImplementerId { get; set; }
+        public int? ImplementerId { get; set; }
         [DataMember]
         [DisplayName("Клиент")]
         public string ClientFIO { get; set; }
