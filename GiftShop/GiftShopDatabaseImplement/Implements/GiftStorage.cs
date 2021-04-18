@@ -99,7 +99,6 @@ namespace GiftShopDatabaseImplement.Implements
                     {
                         CreateModel(model, new Gift(), context);
                         context.SaveChanges();
-
                         transaction.Commit();
                     }
                     catch
