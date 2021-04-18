@@ -28,8 +28,7 @@ namespace GiftShopBusinessLogic.BusinessLogics
             var implementers = _implementerStorage.GetFullList();
             var orders = _orderStorage.GetFilteredList(new OrderBindingModel
             {
-                FreeOrders
-           = true
+                FreeOrders = true
             });
             foreach (var implementer in implementers)
             {

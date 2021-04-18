@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GiftShopDatabaseImplement.Migrations
 {
     [DbContext(typeof(GiftShopDatabase))]
-    [Migration("20210418160738_InitialCreate")]
+    [Migration("20210418181606_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -197,7 +197,7 @@ namespace GiftShopDatabaseImplement.Migrations
                         .IsRequired();
 
                     b.HasOne("GiftShopDatabaseImplement.Models.Implementer", "Implementer")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("ImplementerId");
                 });
 #pragma warning restore 612, 618

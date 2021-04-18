@@ -55,7 +55,17 @@ namespace GiftShopView
         {
             if (string.IsNullOrEmpty(textBoxName.Text))
             {
-                MessageBox.Show("Fill name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Вы не ввели имя", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(textBoxWorkTime.Text))
+            {
+                MessageBox.Show("Вы не ввели время работы", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(textBoxPauseTime.Text))
+            {
+                MessageBox.Show("Вы не ввели время перерыва", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             try
@@ -67,13 +77,13 @@ namespace GiftShopView
                     WorkingTime = Convert.ToInt32(textBoxWorkTime.Text),
                     PauseTime = Convert.ToInt32(textBoxPauseTime.Text)
                 });
-                MessageBox.Show("Saved", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Сохранено", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
                 Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

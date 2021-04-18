@@ -195,7 +195,7 @@ namespace GiftShopDatabaseImplement.Migrations
                         .IsRequired();
 
                     b.HasOne("GiftShopDatabaseImplement.Models.Implementer", "Implementer")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("ImplementerId");
                 });
 #pragma warning restore 612, 618
