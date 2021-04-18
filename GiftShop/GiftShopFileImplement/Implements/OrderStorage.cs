@@ -96,7 +96,7 @@ namespace GiftShopFileImplement.Implements
             {
                 Id = order.Id,
                 GiftId = order.GiftId,
-                ClientId = order.ClientId,
+                ClientId = order.ClientId.Value,
                 ClientFIO = source.Clients.FirstOrDefault(client => client.Id == order.ClientId)?.ClientFIO,
                 GiftName = source.Gifts.FirstOrDefault(gift => gift.Id == order.GiftId)?.GiftName,
                 Count = order.Count,
