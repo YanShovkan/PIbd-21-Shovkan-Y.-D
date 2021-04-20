@@ -13,5 +13,8 @@ namespace GiftShopDatabaseImplement.Models
         
         [ForeignKey("MaterialId")]
         public virtual List<GiftMaterial> GiftMaterials { get; set; }
+        
+        [ForeignKey("MaterialId")]
+        public virtual List<StorageMaterial> StorageMaterials { get; set; }
     }
 }
