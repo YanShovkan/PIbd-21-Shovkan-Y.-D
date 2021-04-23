@@ -43,7 +43,7 @@ namespace GiftShopDatabaseImplement.Implements
             using (var context = new GiftShopDatabase())
             {
                 var implementer = context.Implementers
-                .FirstOrDefault(rec => rec.Id == model.Id);
+                .FirstOrDefault(rec => rec.Id == model.Id || rec.Name == model.Name);
                 return implementer != null ?
                 CreateModel(implementer) : null;
             }
