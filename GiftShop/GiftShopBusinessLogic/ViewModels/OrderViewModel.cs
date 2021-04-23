@@ -15,6 +15,8 @@ namespace GiftShopBusinessLogic.ViewModels
         [DataMember]
         public int GiftId { get; set; }
         [DataMember]
+        public int? ImplementerId { get; set; }
+        [DataMember]
         [DisplayName("Клиент")]
         public string ClientFIO { get; set; }
         [DataMember]
@@ -35,5 +37,8 @@ namespace GiftShopBusinessLogic.ViewModels
         [DataMember]
         [DisplayName("Дата выполнения")]
         public DateTime? DateImplement { get; set; }
+        [DataMember]
+        [DisplayName("Исполнитель")]
+        public string ImplementerName { get; set; }
     }
 }

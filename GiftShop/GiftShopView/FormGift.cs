@@ -130,7 +130,6 @@ namespace GiftShopView
                 logic.CreateOrUpdate(new GiftBindingModel
                 {
                     Id = id,
-
                     GiftName = textBoxName.Text,
                     Price = Convert.ToDecimal(textBoxPrice.Text),
                     GiftMaterials = giftMaterials

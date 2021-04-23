@@ -21,7 +21,6 @@ namespace GiftShopView
         private void FormMaterial_Load(object sender, EventArgs e)
         {
             if (id.HasValue)
-
             {
                 try
                 {

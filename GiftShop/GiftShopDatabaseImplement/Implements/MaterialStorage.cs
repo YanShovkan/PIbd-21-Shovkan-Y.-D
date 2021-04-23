@@ -65,7 +65,8 @@ namespace GiftShopDatabaseImplement.Implements
         {
             using (var context = new GiftShopDatabase())
             {
-                context.Materials.Add(CreateModel(model, new Material()));
+                Material mat = CreateModel(model, new Material());
+                context.Materials.Add(mat);
                 context.SaveChanges();
             }
         }
