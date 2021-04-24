@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B3BFAAE4-6440-44A3-AF72-FCD28B42848D}</ProjectGuid>
+    <ProjectGuid>{74C74F45-3C80-41F6-B4D5-C7B46EE7AD9E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GiftShopFileImplement</RootNamespace>

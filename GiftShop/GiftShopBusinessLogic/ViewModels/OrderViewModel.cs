@@ -12,7 +12,6 @@ namespace GiftShopBusinessLogic.ViewModels
         public string GiftName { get; set; }
         [DisplayName("Количество")]
         public int Count { get; set; }
-
         [DisplayName("Сумма")]
         public decimal Sum { get; set; }
         [DisplayName("Статус")]

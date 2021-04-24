@@ -181,7 +181,7 @@ namespace GiftShopListImplement.Implements
             };
         }
 
-        public bool TakeFromStorage(Dictionary<int, (string, int)> materials, int count)
+        public void CheckMaterials(GiftViewModel model, int materialCountInOrder)
         {
             throw new NotImplementedException();
         }

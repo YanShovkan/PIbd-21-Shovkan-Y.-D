@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using GiftShopBusinessLogic.BindingModels;
 using GiftShopBusinessLogic.BusinessLogics;
+using GiftShopBusinessLogic.ViewModels;
 using System;
 using System.Windows.Forms;
 using Unity;
@@ -13,20 +14,22 @@ namespace GiftShopView
         [Dependency]
         public new IUnityContainer Container { get; set; }
         private readonly OrderLogic _orderLogic;
-        public FormMain(OrderLogic orderLogic)
+        private readonly GiftLogic _giftLogic;
+        public FormMain(OrderLogic orderLogic, GiftLogic giftLogic)
         {
             InitializeComponent();
             this._orderLogic = orderLogic;
+            this._giftLogic = giftLogic;
         }
 
         private void LoadData()
         {
             try
             {
-                var list = _orderLogic.Read(null);
-                if (list != null)
+                var ordersList = _orderLogic.Read(null);
+                if (ordersList != null)
                 {
-                    dataGridView.DataSource = list;
+                    dataGridView.DataSource = ordersList;
                     dataGridView.Columns[0].Visible = false;
                     dataGridView.Columns[1].Visible = false;
                 }

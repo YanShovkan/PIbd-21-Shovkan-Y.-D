@@ -139,47 +139,9 @@ namespace GiftShopFileImplement.Implements
             }
         }
 
-        public bool TakeFromStorage(Dictionary<int, (string, int)> materials, int count)
+        public void CheckMaterials(GiftViewModel model, int materialCountInOrder)
         {
-            foreach (var material in materials)
-            {
-                int _count = source.Storages.
-                    Where(gift => gift.StorageMaterials
-                    .ContainsKey(material.Key))
-                    .Sum(gift => gift.StorageMaterials[material.Key]);
-
-                if (_count < material.Value.Item2 * count)
-                {
-                    return false;
-                }
-            }
-
-            foreach (var material in materials)
-            {
-                int _count = material.Value.Item2 * count;
-                IEnumerable<Storage> storages = source.Storages.Where(gift => gift.StorageMaterials.ContainsKey(material.Key));
-
-                foreach (Storage storage in storages)
-                {
-                    if (storage.StorageMaterials[material.Key] <= _count)
-                    {
-                        _count -= storage.StorageMaterials[material.Key];
-                        storage.StorageMaterials.Remove(material.Key);
-                    }
-                    else
-                    {
-                        storage.StorageMaterials[material.Key] -= _count;
-                        _count = 0;
-                    }
-
-                    if (_count == 0)
-                    {
-                        break;
-                    }
-                }
-            }
-
-            return true;
+            throw new NotImplementedException();
         }
     }
 }
