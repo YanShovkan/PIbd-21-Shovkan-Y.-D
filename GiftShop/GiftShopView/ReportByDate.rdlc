@@ -105,6 +105,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -134,6 +135,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -290,7 +292,48 @@
       </ConnectionProperties>
       <rd:DataSourceID>511c8883-6746-4950-bcd8-304f66674dca</rd:DataSourceID>
     </DataSource>
+    <DataSource Name="GiftShopBusinessLogicViewModels1">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>da7ae09b-0d84-4309-b7cf-575fabead767</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="GiftShopBusinessLogicViewModels2">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>6da4f71a-475d-473f-81c8-e4cecb193386</rd:DataSourceID>
+    </DataSource>
   </DataSources>
+  <DataSets>
+    <DataSet Name="OrdersDataSet">
+      <Query>
+        <DataSourceName>GiftShopBusinessLogicViewModels2</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Count">
+          <DataField>Count</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Date">
+          <DataField>Date</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Sum">
+          <DataField>Sum</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>GiftShopBusinessLogic.ViewModels</rd:DataSetName>
+        <rd:TableName>OrderReportByDateViewModel</rd:TableName>
+        <rd:ObjectDataSourceType>GiftShopBusinessLogic.ViewModels.OrderReportByDateViewModel, GiftShopBusinessLogic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>c2afc7be-be7d-4602-9b05-6ed5f059d6ac</rd:ReportID>
 </Report>
