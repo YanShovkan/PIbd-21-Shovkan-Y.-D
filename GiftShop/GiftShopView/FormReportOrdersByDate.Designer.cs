@@ -30,7 +30,8 @@ namespace GiftShopView
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource3 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            this.OrderReportByDateViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonCreateReport = new System.Windows.Forms.Button();
@@ -38,15 +39,18 @@ namespace GiftShopView
             this.labelTo = new System.Windows.Forms.Label();
             this.labelFrom = new System.Windows.Forms.Label();
             this.dateTimePickerFrom = new System.Windows.Forms.DateTimePicker();
-            this.OrderReportByDateViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.OrderReportByDateViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
+            // OrderReportByDateViewModelBindingSource
+            // 
+            this.OrderReportByDateViewModelBindingSource.DataSource = typeof(GiftShopBusinessLogic.ViewModels.OrderReportByDateViewModel);
+            // 
             // reportViewer
             // 
-            reportDataSource3.Name = "OrdersDataSet";
-            reportDataSource3.Value = this.OrderReportByDateViewModelBindingSource;
-            this.reportViewer.LocalReport.DataSources.Add(reportDataSource3);
+            reportDataSource1.Name = "DataSetOrders";
+            reportDataSource1.Value = this.OrderReportByDateViewModelBindingSource;
+            this.reportViewer.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer.LocalReport.ReportEmbeddedResource = "GiftShopView.ReportByDate.rdlc";
             this.reportViewer.Location = new System.Drawing.Point(12, 38);
             this.reportViewer.Name = "reportViewer";
@@ -106,10 +110,6 @@ namespace GiftShopView
             this.dateTimePickerFrom.Size = new System.Drawing.Size(200, 20);
             this.dateTimePickerFrom.TabIndex = 7;
             // 
-            // OrderReportByDateViewModelBindingSource
-            // 
-            this.OrderReportByDateViewModelBindingSource.DataSource = typeof(GiftShopBusinessLogic.ViewModels.OrderReportByDateViewModel);
-            // 
             // FormReportOrdersByDate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -124,6 +124,7 @@ namespace GiftShopView
             this.Controls.Add(this.dateTimePickerFrom);
             this.Name = "FormReportOrdersByDate";
             this.Text = "FormReportOrdersByDate";
+            this.Load += new System.EventHandler(this.FormReportOrdersByDate_Load);
             ((System.ComponentModel.ISupportInitialize)(this.OrderReportByDateViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

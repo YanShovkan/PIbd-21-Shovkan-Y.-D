@@ -2,47 +2,17 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <Body>
     <ReportItems>
-      <Textbox Name="TextboxTitle">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Заказы</Value>
-                <Style>
-                  <FontSize>18pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <Top>0.81984cm</Top>
-        <Left>6.88863cm</Left>
-        <Height>0.89673cm</Height>
-        <Width>2.82146cm</Width>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Tablix Name="Tablix">
+      <Tablix Name="TablixOrders">
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>4.89856cm</Width>
+              <Width>4.693cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>4.89856cm</Width>
+              <Width>4.693cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>4.89856cm</Width>
+              <Width>4.693cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -87,7 +57,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Количество заказов</Value>
+                              <Value>Количество</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -105,7 +75,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -117,7 +86,16 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Общая стоимость</Value>
+                              <Value>Сумма</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -135,7 +113,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -145,7 +122,7 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Date">
+                    <Textbox Name="Date1">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -159,7 +136,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Date</rd:DefaultName>
+                      <rd:DefaultName>Date1</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -216,9 +193,7 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style>
-                            <TextAlign>Left</TextAlign>
-                          </Style>
+                          <Style />
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Sum</rd:DefaultName>
@@ -257,17 +232,58 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>OrdersDataSet</DataSetName>
-        <Top>2.2225cm</Top>
-        <Left>1.05043cm</Left>
+        <Top>2.16641cm</Top>
+        <Left>0.92287cm</Left>
         <Height>1.2cm</Height>
-        <Width>14.69568cm</Width>
-        <ZIndex>1</ZIndex>
+        <Width>14.07901cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Tablix>
+      <Textbox Name="TextboxTitle">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Заказы по дате</Value>
+                <Style>
+                  <FontSize>18pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <Top>0.96669cm</Top>
+        <Left>5.61587cm</Left>
+        <Height>1.02333cm</Height>
+        <Width>4.693cm</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
     <Height>2in</Height>
     <Style />
@@ -290,27 +306,13 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>511c8883-6746-4950-bcd8-304f66674dca</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="GiftShopBusinessLogicViewModels1">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>da7ae09b-0d84-4309-b7cf-575fabead767</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="GiftShopBusinessLogicViewModels2">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>6da4f71a-475d-473f-81c8-e4cecb193386</rd:DataSourceID>
+      <rd:DataSourceID>ea350aee-152e-45ad-9124-0e595d26e3a4</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="OrdersDataSet">
       <Query>
-        <DataSourceName>GiftShopBusinessLogicViewModels2</DataSourceName>
+        <DataSourceName>GiftShopBusinessLogicViewModels</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -335,5 +337,5 @@
     </DataSet>
   </DataSets>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
-  <rd:ReportID>c2afc7be-be7d-4602-9b05-6ed5f059d6ac</rd:ReportID>
+  <rd:ReportID>492f9d4f-0943-4721-b441-a43845838afc</rd:ReportID>
 </Report>

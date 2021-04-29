@@ -70,5 +70,10 @@ namespace GiftShopView
                 }
             }
         }
+
+        private void FormReportOrdersByDate_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
