@@ -65,6 +65,7 @@ namespace GiftShopBusinessLogic.BusinessLogics
             });
 
             _storageStorage.CheckMaterials(gift, order.Count);
+
             _orderStorage.Update(new OrderBindingModel
             {
                 Id = order.Id,

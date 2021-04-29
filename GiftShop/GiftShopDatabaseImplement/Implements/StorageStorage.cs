@@ -19,16 +19,7 @@ namespace GiftShopDatabaseImplement.Implements
                 return context.Storages
                     .Include(rec => rec.StorageMaterials)
                     .ThenInclude(rec => rec.Material)
-                    .ToList().Select(rec => new StorageViewModel
-                    {
-                        Id = rec.Id,
-                        StorageName = rec.StorageName,
-                        StorageManager = rec.StorageManager,
-                        DateCreate = rec.DateCreate,
-                        StorageMaterials = rec.StorageMaterials
-                            .ToDictionary(recPPC => recPPC.MaterialId,
-                            recPPC => (recPPC.Material?.MaterialName, recPPC.Count))
-                    })
+                    .ToList().Select(CreateModel)
                     .ToList();
             }
         }
@@ -48,15 +39,7 @@ namespace GiftShopDatabaseImplement.Implements
                     .Where(rec => rec.StorageName
                     .Contains(model.StorageName))
                     .ToList()
-                    .Select(rec => new StorageViewModel
-                    {
-                        Id = rec.Id,
-                        StorageName = rec.StorageName,
-                        StorageManager = rec.StorageManager,
-                        DateCreate = rec.DateCreate,
-                        StorageMaterials = rec.StorageMaterials
-                            .ToDictionary(recPC => recPC.MaterialId, recPC => (recPC.Material?.MaterialName, recPC.Count))
-                    })
+                    .Select(CreateModel)
                     .ToList();
             }
         }
@@ -70,21 +53,13 @@ namespace GiftShopDatabaseImplement.Implements
 
             using (var context = new GiftShopDatabase())
             {
-                var storehouse = context.Storages
+                var storage = context.Storages
                     .Include(rec => rec.StorageMaterials)
                     .ThenInclude(rec => rec.Material)
                     .FirstOrDefault(rec => rec.StorageName == model.StorageName || rec.Id == model.Id);
 
-                return storehouse != null ?
-                    new StorageViewModel
-                    {
-                        Id = storehouse.Id,
-                        StorageName = storehouse.StorageName,
-                        StorageManager = storehouse.StorageManager,
-                        DateCreate = storehouse.DateCreate,
-                        StorageMaterials = storehouse.StorageMaterials
-                            .ToDictionary(recPC => recPC.MaterialId, recPC => (recPC.Material?.MaterialName, recPC.Count))
-                    } :
+                return storage != null ?
+                    CreateModel(storage) :
                     null;
             }
         }
@@ -155,7 +130,18 @@ namespace GiftShopDatabaseImplement.Implements
                 }
             }
         }
-
+        private StorageViewModel CreateModel(Storage storage)
+        {
+            return new StorageViewModel
+            {
+                Id = storage.Id,
+                StorageName = storage.StorageName,
+                StorageManager = storage.StorageManager,
+                DateCreate = storage.DateCreate,
+                StorageMaterials = storage.StorageMaterials
+                            .ToDictionary(recPC => recPC.MaterialId, recPC => (recPC.Material?.MaterialName, recPC.Count))
+            };
+        }
         private Storage CreateModel(StorageBindingModel model, Storage storage, GiftShopDatabase context)
         {
             storage.StorageName = model.StorageName;
@@ -244,7 +230,7 @@ namespace GiftShopDatabaseImplement.Implements
                         {
                             transaction.Rollback();
 
-                            throw new Exception("Не хватает компонентов для изготовления данного печатного изделия!");
+                            throw new Exception("Не хватает материалов для изготовления подарка!");
                         }
                     }
 

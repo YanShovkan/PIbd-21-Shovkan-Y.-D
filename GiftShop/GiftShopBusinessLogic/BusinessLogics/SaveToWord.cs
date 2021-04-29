@@ -124,5 +124,76 @@ namespace GiftShopBusinessLogic.BusinessLogics
             }
             return null;
         }
+        public static void CreateStoragesDoc(StorageWordInfo info)
+        {
+            using (WordprocessingDocument wordDocument = WordprocessingDocument.Create(info.FileName, WordprocessingDocumentType.Document))
+            {
+                MainDocumentPart mainPart = wordDocument.AddMainDocumentPart();
+                mainPart.Document = new Document();
+                Body docBody = mainPart.Document.AppendChild(new Body());
+                Table table = new Table();
+                docBody.AppendChild(CreateParagraph(new WordParagraph
+                {
+                    Texts = new List<(string, WordTextProperties)> { (info.Title, new WordTextProperties { Bold = true, Size = "20", }) },
+                    TextProperties = new WordTextProperties
+                    {
+                        Size = "20",
+                        JustificationValues = JustificationValues.Center
+                    }
+                }));
+
+                TableRow tableRowHeader = new TableRow();
+
+                TableCell cellHeaderName = new TableCell();
+                cellHeaderName.Append(new TableCellProperties(
+                    new TableCellWidth() { Type = TableWidthUnitValues.Dxa, Width = "2800" }));
+                cellHeaderName.Append(new Paragraph(new Run(new Text("Название"))));
+
+                TableCell cellHeaderFIO = new TableCell();
+                cellHeaderFIO.Append(new TableCellProperties(
+                    new TableCellWidth() { Type = TableWidthUnitValues.Dxa, Width = "4000" }));
+                cellHeaderFIO.Append(new Paragraph(new Run(new Text("ФИО ответственного"))));
+
+                TableCell cellHeaderDateCreation = new TableCell();
+                cellHeaderDateCreation.Append(new TableCellProperties(
+                    new TableCellWidth() { Type = TableWidthUnitValues.Dxa, Width = "1000" }));
+                cellHeaderDateCreation.Append(new Paragraph(new Run(new Text("Дата создания"))));
+
+                tableRowHeader.Append(cellHeaderName);
+                tableRowHeader.Append(cellHeaderFIO);
+                tableRowHeader.Append(cellHeaderDateCreation);
+
+                table.Append(tableRowHeader);
+
+                foreach (var storage in info.Storages)
+                {
+                    TableRow tableRow = new TableRow();
+
+                    TableCell cellName = new TableCell();
+                    cellName.Append(new TableCellProperties(
+                        new TableCellWidth() { Type = TableWidthUnitValues.Dxa, Width = "2800" }));
+                    cellName.Append(new Paragraph(new Run(new Text(storage.StorageName))));
+
+                    TableCell cellFIO = new TableCell();
+                    cellFIO.Append(new TableCellProperties(
+                        new TableCellWidth() { Type = TableWidthUnitValues.Dxa, Width = "4000" }));
+                    cellFIO.Append(new Paragraph(new Run(new Text(storage.StorageManager))));
+
+                    TableCell cellDateCreation = new TableCell();
+                    cellDateCreation.Append(new TableCellProperties(
+                        new TableCellWidth() { Type = TableWidthUnitValues.Dxa, Width = "1000" }));
+                    cellDateCreation.Append(new Paragraph(new Run(new Text(storage.DateCreate.ToString()))));
+
+                    tableRow.Append(cellName);
+                    tableRow.Append(cellFIO);
+                    tableRow.Append(cellDateCreation);
+
+                    table.Append(tableRow);
+                }
+
+                docBody.AppendChild(table);
+                wordDocument.MainDocumentPart.Document.Save();
+            }
+        }
     }
 }
