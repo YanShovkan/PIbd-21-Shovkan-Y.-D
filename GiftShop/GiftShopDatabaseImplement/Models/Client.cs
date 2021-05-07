@@ -19,5 +19,7 @@ namespace GiftShopDatabaseImplement.Models
 
         [ForeignKey("ClientId")]
         public virtual List<Order> Orders { get; set; }
+        [ForeignKey("ClientId")]
+        public List<MessageInfo> Messages { get; set; }
     }
 }
