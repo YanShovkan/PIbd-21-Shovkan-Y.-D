@@ -22,6 +22,14 @@ namespace GiftShopClientApp.Controllers
             return
             View(APIClient.GetRequest<List<OrderViewModel>>($"api/main/getorders?clientId={Program.Client.Id}"));
         }
+        public IActionResult Mail()
+        {
+            if (Program.Client == null)
+            {
+                return Redirect("~/Home/Enter");
+            }
+            return View(APIClient.GetRequest<List<MessageInfoViewModel>>($"api/client/getmessages?clientId={Program.Client.Id}"));
+        }
         [HttpGet]
         public IActionResult Privacy()
         {
