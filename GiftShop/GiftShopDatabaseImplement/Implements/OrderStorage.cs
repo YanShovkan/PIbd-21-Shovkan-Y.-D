@@ -40,8 +40,8 @@ namespace GiftShopDatabaseImplement.Implements
             using (var context = new GiftShopDatabase())
             {
                 return context.Orders
-                    .Where(rec => rec.GiftId == model.GiftId)
-                    .Select(rec => new OrderViewModel
+                    .Where(rec => rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
+                .Select(rec => new OrderViewModel
                     {
                         Id = rec.Id,
                         GiftName = rec.Gift.GiftName,

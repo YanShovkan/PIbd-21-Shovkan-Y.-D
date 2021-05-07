@@ -14,12 +14,12 @@ namespace GiftShopView
         [Dependency]
         public new IUnityContainer Container { get; set; }
         private readonly OrderLogic _orderLogic;
-        private readonly GiftLogic _giftLogic;
-        public FormMain(OrderLogic orderLogic, GiftLogic giftLogic)
+        private readonly ReportLogic _reportLogic;
+        public FormMain(OrderLogic orderLogic, GiftLogic giftLogic, ReportLogic reportLogic)
         {
             InitializeComponent();
             this._orderLogic = orderLogic;
-            this._giftLogic = giftLogic;
+            this._reportLogic = reportLogic;
         }
 
         private void LoadData()
@@ -136,6 +136,62 @@ namespace GiftShopView
         private void пополнитьСкладToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormStorageReplenishment>();
+            form.ShowDialog();
+        }
+
+        private void списокМатериаловToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var dialog = new SaveFileDialog { Filter = "docx|*.docx" })
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    _reportLogic.SaveMaterialsToWordFile(new ReportBindingModel
+                    {
+                        FileName = dialog.FileName
+                    });
+                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
+                   MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void материалыПоПодаркамToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReportGiftMaterials>();
+            form.ShowDialog();
+        }
+
+        private void списокЗаказовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReportOrders>();
+            form.ShowDialog();
+        }
+
+        private void списокСкладовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var dialog = new SaveFileDialog { Filter = "docx|*.docx" })
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    _reportLogic.SaveStoragesToWordFile(new ReportBindingModel
+                    {
+                        FileName = dialog.FileName
+                    });
+
+                    MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void загруженностьСкладовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReportStorageMaterials>();
+            form.ShowDialog();
+        }
+
+        private void заказыЗаПериодToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReportOrdersByDate>();
             form.ShowDialog();
         }
     }

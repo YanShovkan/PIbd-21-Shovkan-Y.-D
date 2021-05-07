@@ -35,6 +35,8 @@ namespace GiftShopView
                 HierarchicalLifetimeManager());
             currentContainer.RegisterType<GiftLogic>(new
            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<ReportLogic>(new
+           HierarchicalLifetimeManager());
             currentContainer.RegisterType<StorageLogic>(new
                 HierarchicalLifetimeManager());
             return currentContainer;

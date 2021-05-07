@@ -33,15 +33,10 @@ namespace GiftShopFileImplement.Implements
             {
                 return null;
             }
-            List<OrderViewModel> result = new List<OrderViewModel>();
-            foreach (var order in source.Orders)
-            {
-                if (order.GiftId == model.GiftId)
-                {
-                    result.Add(CreateModel(order));
-                }
-            }
-            return result;
+            return source.Orders
+           .Where(rec => rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
+            .Select(CreateModel)
+            .ToList();
         }
 
         public OrderViewModel GetElement(OrderBindingModel model)

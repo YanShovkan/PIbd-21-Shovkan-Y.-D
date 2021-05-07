@@ -58,10 +58,7 @@ namespace GiftShopView
             {
                 try
                 {
-                    StorageViewModel view = logic.Read(new StorageBindingModel
-                    {
-                        Id = id.Value
-                    })?[0];
+                    StorageViewModel view = logic.Read(new StorageBindingModel { Id = id.Value })?[0];
 
                     if (view != null)
                     {
@@ -98,13 +95,16 @@ namespace GiftShopView
 
             try
             {
-                logic.CreateOrUpdate(new StorageBindingModel
+                StorageBindingModel storage = new StorageBindingModel
                 {
                     Id = id,
                     StorageName = textBoxName.Text,
                     StorageManager = textBoxManager.Text,
-                    StorageMaterials = storageMaterials
-                });
+                    StorageMaterials = storageMaterials,
+                    DateCreate = DateTime.Now
+                };
+
+                logic.CreateOrUpdate(storage);                    
 
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
