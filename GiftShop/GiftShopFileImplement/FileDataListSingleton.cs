@@ -16,16 +16,19 @@ namespace GiftShopFileImplement
         private readonly string OrderFileName = "Order.xml";
         private readonly string GiftFileName = "Gift.xml";
         private readonly string StorageFileName = "Storage.xml";
+        private readonly string ClientFileName = "Client.xml";
         public List<Material> Materials { get; set; }
         public List<Order> Orders { get; set; }
         public List<Gift> Gifts { get; set; }
         public List<Storage> Storages { get; set; }
+        public List<Client> Clients { get; set; }
         private FileDataListSingleton()
         {
             Materials = LoadMaterials();
             Orders = LoadOrders();
             Gifts = LoadGifts();
             Storages = LoadStorages();
+			Clients = LoadClients();
         }
         public static FileDataListSingleton GetInstance()
         {
@@ -41,6 +44,27 @@ namespace GiftShopFileImplement
             SaveOrders();
             SaveGifts();
             SaveStorages();
+            SaveClients();
+        }
+        private List<Client> LoadClients()
+        {
+            var list = new List<Client>();
+            if (File.Exists(ClientFileName))
+            {
+                XDocument xDocument = XDocument.Load(ClientFileName);
+                var xElements = xDocument.Root.Elements("Clients").ToList();
+                foreach (var elem in xElements)
+                {
+                    list.Add(new Client
+                    {
+                        Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                        ClientFIO = elem.Element("ClientFIO").Value,
+                        Email = elem.Element("Email").Value,
+                        Password = elem.Element("Password").Value
+                    });
+                }
+            }
+            return list;
         }
 
         private List<Material> LoadMaterials()
@@ -259,6 +283,23 @@ namespace GiftShopFileImplement
 
                 XDocument xDocument = new XDocument(xElement);
                 xDocument.Save(StorageFileName);
+            }
+        }
+        private void SaveClients()
+        {
+            if (Clients != null)
+            {
+                var xElement = new XElement("Clients");
+                foreach (var client in Clients)
+                {
+                    xElement.Add(new XElement("Client",
+                    new XAttribute("Id", client.Id),
+                    new XElement("ClientFIO", client.ClientFIO),
+                    new XElement("Email", client.Email),
+                    new XElement("Password", client.Password)));
+                }
+                XDocument xDocument = new XDocument(xElement);
+                xDocument.Save(ClientFileName);
             }
         }
     }

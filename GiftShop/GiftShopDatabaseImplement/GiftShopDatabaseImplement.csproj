@@ -113,6 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GiftShopDatabase.cs" />
+    <Compile Include="Implements\ClientStorage.cs" />
     <Compile Include="Implements\GiftStorage.cs" />
     <Compile Include="Implements\MaterialStorage.cs" />
     <Compile Include="Implements\OrderStorage.cs" />
@@ -122,6 +123,7 @@
       <DependentUpon>20210322182722_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\GiftShopDatabaseModelSnapshot.cs" />
+    <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Gift.cs" />
     <Compile Include="Models\GiftMaterial.cs" />
     <Compile Include="Models\Material.cs" />

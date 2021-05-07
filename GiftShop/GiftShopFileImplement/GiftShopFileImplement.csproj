@@ -42,10 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FileDataListSingleton.cs" />
+    <Compile Include="Implements\ClientStorage.cs" />
     <Compile Include="Implements\GiftStorage.cs" />
     <Compile Include="Implements\MaterialStorage.cs" />
     <Compile Include="Implements\OrderStorage.cs" />
     <Compile Include="Implements\StorageStorage.cs" />
+    <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Gift.cs" />
     <Compile Include="Models\Material.cs" />
     <Compile Include="Models\Order.cs" />
