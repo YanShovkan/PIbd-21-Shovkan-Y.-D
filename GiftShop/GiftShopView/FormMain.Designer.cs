@@ -89,8 +89,7 @@
             this.справочникиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.материалыToolStripMenuItem,
             this.подаркиToolStripMenuItem,
-            this.клиентыToolStripMenuItem});
-            this.подаркиToolStripMenuItem,
+            this.клиентыToolStripMenuItem,
             this.складыToolStripMenuItem});
             this.справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
             this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
@@ -268,11 +267,11 @@
         private System.Windows.Forms.ToolStripMenuItem списокМатериаловToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem материалыПоПодаркамToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem списокЗаказовToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem клиентыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem складыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem пополнитьСкладToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem списокСкладовToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem загруженностьСкладовToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem заказыЗаПериодToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem клиентыToolStripMenuItem;
     }
 }

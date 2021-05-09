@@ -16,8 +16,8 @@ namespace GiftShopListImplement
             Materials = new List<Material>();
             Orders = new List<Order>();
             Gifts = new List<Gift>();
-            Clients = new List<Client>();
             Storages = new List<Storage>();
+            Clients = new List<Client>();
         }
         public static DataListSingleton GetInstance()
         {
