@@ -90,8 +90,7 @@
             this.материалыToolStripMenuItem,
             this.подаркиToolStripMenuItem,
             this.клиентыToolStripMenuItem,
-            this.исполнителиToolStripMenuItem});
-            this.клиентыToolStripMenuItem,
+            this.исполнителиToolStripMenuItem,
             this.складыToolStripMenuItem});
             this.справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
             this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(94, 20);

@@ -44,11 +44,13 @@
     <Compile Include="FileDataListSingleton.cs" />
     <Compile Include="Implements\ClientStorage.cs" />
     <Compile Include="Implements\GiftStorage.cs" />
+    <Compile Include="Implements\ImplementerStorage.cs" />
     <Compile Include="Implements\MaterialStorage.cs" />
     <Compile Include="Implements\OrderStorage.cs" />
     <Compile Include="Implements\StorageStorage.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Gift.cs" />
+    <Compile Include="Models\Implementer.cs" />
     <Compile Include="Models\Material.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Storage.cs" />
@@ -61,7 +63,6 @@
     </ProjectReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\GiftShopBusinessLogic\GiftShopBusinessLogic.csproj" />
   </ItemGroup>

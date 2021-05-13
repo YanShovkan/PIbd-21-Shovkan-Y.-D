@@ -417,10 +417,6 @@
       <Project>{5854898c-9135-45b0-b983-b39b1adc4a3c}</Project>
       <Name>GiftShopDatabaseImplement</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GiftShopFileImplement\GiftShopFileImplement.csproj">
-      <Project>{74c74f45-3c80-41f6-b4d5-c7b46ee7ad9e}</Project>
-      <Name>GiftShopFileImplement</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="SqlServerTypes\readme.htm" />

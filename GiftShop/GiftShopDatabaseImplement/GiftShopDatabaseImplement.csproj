@@ -122,17 +122,14 @@
     <Compile Include="GiftShopDatabase.cs" />
     <Compile Include="Implements\ClientStorage.cs" />
     <Compile Include="Implements\GiftStorage.cs" />
+    <Compile Include="Implements\ImplementerStorage.cs" />
     <Compile Include="Implements\MaterialStorage.cs" />
     <Compile Include="Implements\OrderStorage.cs" />
     <Compile Include="Implements\StorageStorage.cs" />
-    <Compile Include="Migrations\20210507191725_InitialCreate.cs" />
-    <Compile Include="Migrations\20210507191725_InitialCreate.designer.cs">
-      <DependentUpon>20210507191725_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\GiftShopDatabaseModelSnapshot.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Gift.cs" />
     <Compile Include="Models\GiftMaterial.cs" />
+    <Compile Include="Models\Implementer.cs" />
     <Compile Include="Models\Material.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Storage.cs" />
