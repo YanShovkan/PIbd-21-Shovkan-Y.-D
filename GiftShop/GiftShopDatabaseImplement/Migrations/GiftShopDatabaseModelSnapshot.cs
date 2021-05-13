@@ -15,7 +15,7 @@ namespace GiftShopDatabaseImplement.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.0")
+                .HasAnnotation("ProductVersion", "3.1.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -167,6 +167,54 @@ namespace GiftShopDatabaseImplement.Migrations
                     b.ToTable("Orders");
                 });
 
+            modelBuilder.Entity("GiftShopDatabaseImplement.Models.Storage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("StorageManager")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StorageName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Storages");
+                });
+
+            modelBuilder.Entity("GiftShopDatabaseImplement.Models.StorageMaterial", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaterialId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StorageId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MaterialId");
+
+                    b.HasIndex("StorageId");
+
+                    b.ToTable("StorageMaterials");
+                });
+
             modelBuilder.Entity("GiftShopDatabaseImplement.Models.GiftMaterial", b =>
                 {
                     b.HasOne("GiftShopDatabaseImplement.Models.Gift", "Gift")
@@ -197,6 +245,21 @@ namespace GiftShopDatabaseImplement.Migrations
                     b.HasOne("GiftShopDatabaseImplement.Models.Implementer", "Implementer")
                         .WithMany("Orders")
                         .HasForeignKey("ImplementerId");
+                });
+
+            modelBuilder.Entity("GiftShopDatabaseImplement.Models.StorageMaterial", b =>
+                {
+                    b.HasOne("GiftShopDatabaseImplement.Models.Material", "Material")
+                        .WithMany("StorageMaterials")
+                        .HasForeignKey("MaterialId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GiftShopDatabaseImplement.Models.Storage", "Storage")
+                        .WithMany("StorageMaterials")
+                        .HasForeignKey("StorageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

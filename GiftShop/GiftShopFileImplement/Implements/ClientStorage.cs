@@ -10,11 +10,11 @@ namespace GiftShopFileImplement.Implements
 {
     public class ClientStorage : IClientStorage
     {
-        private readonly FileDataFileSingleton source;
+        private readonly FileDataListSingleton source;
 
         public ClientStorage()
         {
-            source = FileDataFileSingleton.GetInstance();
+            source = FileDataListSingleton.GetInstance();
         }
 
         public List<ClientViewModel> GetFullList()

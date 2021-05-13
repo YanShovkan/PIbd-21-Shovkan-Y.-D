@@ -35,14 +35,21 @@ namespace GiftShopView
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<IClientStorage, ClientStorage>(new
            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IStorageStorage, StorageStorage>(new
+                HierarchicalLifetimeManager());
+            currentContainer.RegisterType<MaterialLogic>(new
             currentContainer.RegisterType<ClientLogic>(new
            HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IImplementerStorage, ImplementerStorage>(new
+            currentContainer.RegisterType<OrderLogic>(new
+                HierarchicalLifetimeManager());
+            currentContainer.RegisterType<GiftLogic>(new
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<ImplementerStorage>(new
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<ReportLogic>(new
            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<StorageLogic>(new
+                HierarchicalLifetimeManager());
             return currentContainer;
         }
     }

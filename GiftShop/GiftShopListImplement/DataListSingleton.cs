@@ -11,11 +11,13 @@ namespace GiftShopListImplement
         public List<Gift> Gifts { get; set; }
         public List<Client> Clients { get; set; }
         public List<Implementer> Implementers { get; set; }
+        public List<Storage> Storages { get; set; }
         private DataListSingleton()
         {
             Materials = new List<Material>();
             Orders = new List<Order>();
             Gifts = new List<Gift>();
+            Storages = new List<Storage>();
             Clients = new List<Client>();
             Implementers = new List<Implementer>();
         }

@@ -31,8 +31,8 @@ namespace GiftShopView
         {
             this.buttonSaveToExcel = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.Material = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Gift = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Material = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -53,8 +53,8 @@ namespace GiftShopView
             this.dataGridView.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Material,
             this.Gift,
+            this.Material,
             this.Count});
             this.dataGridView.Location = new System.Drawing.Point(12, 42);
             this.dataGridView.Name = "dataGridView";
@@ -62,19 +62,19 @@ namespace GiftShopView
             this.dataGridView.RowHeadersVisible = false;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(776, 396);
-            this.dataGridView.TabIndex = 1;
-            // 
-            // Material
-            // 
-            this.Material.HeaderText = "Материал";
-            this.Material.Name = "Material";
-            this.Material.ReadOnly = true;
+            this.dataGridView.TabIndex = 4;
             // 
             // Gift
             // 
             this.Gift.HeaderText = "Подарок";
             this.Gift.Name = "Gift";
             this.Gift.ReadOnly = true;
+            // 
+            // Material
+            // 
+            this.Material.HeaderText = "Материал";
+            this.Material.Name = "Material";
+            this.Material.ReadOnly = true;
             // 
             // Count
             // 
@@ -101,8 +101,8 @@ namespace GiftShopView
 
         private System.Windows.Forms.Button buttonSaveToExcel;
         private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Material;
         private System.Windows.Forms.DataGridViewTextBoxColumn Gift;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Material;
         private System.Windows.Forms.DataGridViewTextBoxColumn Count;
     }
 }

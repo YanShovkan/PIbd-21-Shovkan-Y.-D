@@ -10,11 +10,17 @@ namespace GiftShopBusinessLogic.BusinessLogics
     public class OrderLogic
     {
         private readonly IOrderStorage _orderStorage;
+        private readonly IGiftStorage _giftStorage;
+        private readonly IStorageStorage _storageStorage;
+       
+        public OrderLogic(IOrderStorage orderStorage, IGiftStorage giftStorage, IStorageStorage storageStorage)
         private readonly object locker = new object();
 
         public OrderLogic(IOrderStorage orderStorage)
         {
             _orderStorage = orderStorage;
+            _giftStorage = giftStorage;
+            _storageStorage = storageStorage;
         }
 
         public List<OrderViewModel> Read(OrderBindingModel model)
@@ -75,6 +81,34 @@ namespace GiftShopBusinessLogic.BusinessLogics
                     Status = OrderStatus.Выполняется
                 });
             }
+        }
+            var order = _orderStorage.GetElement(new OrderBindingModel { Id = model.OrderId });
+            if (order == null)
+            {
+                throw new Exception("Заказ не найден");
+            }
+            if (order.Status != OrderStatus.Принят)
+            {
+                throw new Exception("Заказ не в статусе \"Принят\"");
+            }
+
+            var gift = _giftStorage.GetElement(new GiftBindingModel
+            {
+                Id = order.GiftId
+            });
+
+            _storageStorage.CheckMaterials(gift, order.Count);
+
+            _orderStorage.Update(new OrderBindingModel
+            {
+                Id = order.Id,
+                GiftId = order.GiftId,
+                ClientId = order.ClientId,
+                Count = order.Count,
+                Sum = order.Sum,
+                DateCreate = order.DateCreate,
+                Status = OrderStatus.Выполняется
+            });
         }
 
         public void FinishOrder(ChangeStatusBindingModel model)

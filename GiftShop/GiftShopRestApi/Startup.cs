@@ -22,12 +22,16 @@ namespace GiftShopRestApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IStorageStorage, StorageStorage>();
             services.AddTransient<IClientStorage, ClientStorage>();
             services.AddTransient<IOrderStorage, OrderStorage>();
             services.AddTransient<IGiftStorage, GiftStorage>();
+            services.AddTransient<IMaterialStorage, MaterialStorage>();
             services.AddTransient<OrderLogic>();
             services.AddTransient<ClientLogic>();
             services.AddTransient<GiftLogic>();
+            services.AddTransient<StorageLogic>();
+            services.AddTransient<MaterialLogic>();
             services.AddControllers().AddNewtonsoftJson();
 
         }
