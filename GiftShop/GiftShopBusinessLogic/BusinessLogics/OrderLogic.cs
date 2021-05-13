@@ -71,7 +71,7 @@ namespace GiftShopBusinessLogic.BusinessLogics
                     throw new Exception("У заказа уже есть исполнитель");
                 }
 
-                if (_storageStorage.CheckMaterials(_giftStorage.GetElement(new GiftBindingModel { Id = order.GiftId }), order.Count))
+                if (!_storageStorage.CheckMaterials(_giftStorage.GetElement(new GiftBindingModel { Id = order.GiftId }), order.Count))
                 {
                     status = OrderStatus.Требуются_материалы;
                 }
@@ -95,6 +95,10 @@ namespace GiftShopBusinessLogic.BusinessLogics
             if (order == null)
             {
                 throw new Exception("Заказ не найден");
+            }
+            if (order.Status == OrderStatus.Требуются_материалы && _storageStorage.CheckMaterials(_giftStorage.GetElement(new GiftBindingModel { Id = order.GiftId }), order.Count))
+            {
+                order.Status = OrderStatus.Выполняется;
             }
             if (order.Status != OrderStatus.Выполняется)
             {

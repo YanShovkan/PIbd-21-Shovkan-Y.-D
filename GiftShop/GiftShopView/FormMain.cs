@@ -149,7 +149,7 @@ namespace GiftShopView
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    _reportLogic.SaveStoragesToWordFile(new ReportBindingModel
+                    reportLogic.SaveStoragesToWordFile(new ReportBindingModel
                     {
                         FileName = dialog.FileName
                     });

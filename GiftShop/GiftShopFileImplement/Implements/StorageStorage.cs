@@ -139,7 +139,7 @@ namespace GiftShopFileImplement.Implements
             }
         }
 
-        public void CheckMaterials(GiftViewModel model, int materialCountInOrder)
+        public bool CheckMaterials(GiftViewModel model, int materialCountInOrder)
         {
             throw new NotImplementedException();
         }

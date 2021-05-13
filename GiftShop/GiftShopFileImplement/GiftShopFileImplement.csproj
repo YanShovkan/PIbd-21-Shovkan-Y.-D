@@ -61,7 +61,6 @@
       <Project>{ad71c5fa-0997-42c9-8125-dafe27706919}</Project>
       <Name>GiftShopBusinessLogic</Name>
     </ProjectReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GiftShopBusinessLogic\GiftShopBusinessLogic.csproj" />

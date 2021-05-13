@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-
 namespace GiftShopBusinessLogic.BusinessLogics
 {
     public class WorkModeling
@@ -15,12 +14,12 @@ namespace GiftShopBusinessLogic.BusinessLogics
         private readonly IOrderStorage _orderStorage;
         private readonly OrderLogic _orderLogic;
         private readonly Random rnd;
-        public WorkModeling(IImplementerStorage implementerStorage, IOrderStorage
-       orderStorage, OrderLogic orderLogic)
+        public WorkModeling(IImplementerStorage implementerStorage, IOrderStorage orderStorage, OrderLogic orderLogic)
         {
-            this._implementerStorage = implementerStorage;
-            this._orderStorage = orderStorage;
-            this._orderLogic = orderLogic;
+            _implementerStorage = implementerStorage;
+            _orderStorage = orderStorage;
+            _orderLogic = orderLogic;
+
             rnd = new Random(1000);
         }
         public void DoWork()
@@ -35,9 +34,7 @@ namespace GiftShopBusinessLogic.BusinessLogics
                 WorkerWorkAsync(implementer, orders);
             }
         }
-
-        private async void WorkerWorkAsync(ImplementerViewModel implementer,
-       List<OrderViewModel> orders)
+        private async void WorkerWorkAsync(ImplementerViewModel implementer, List<OrderViewModel> orders)
         {
             // ищем заказы, которые уже в работе (вдруг исполнителя прервали)
             var runOrders = await Task.Run(() => _orderStorage.GetFilteredList(new OrderBindingModel { ImplementerId = implementer.Id }));
