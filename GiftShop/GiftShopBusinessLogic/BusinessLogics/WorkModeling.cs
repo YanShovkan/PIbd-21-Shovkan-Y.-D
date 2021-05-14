@@ -41,27 +41,35 @@ namespace GiftShopBusinessLogic.BusinessLogics
             foreach (var order in runOrders)
             {
                 // делаем работу заново
-                Thread.Sleep(implementer.WorkingTime * rnd.Next(1, 5) * order.Count);
-                _orderLogic.FinishOrder(new ChangeStatusBindingModel
+                try
                 {
-                    OrderId = order.Id,
-                    ImplementerId = implementer.Id
-                });
-                // отдыхаем
-                Thread.Sleep(implementer.PauseTime);
+                    Thread.Sleep(implementer.WorkingTime * rnd.Next(1, 5) * order.Count);
+                    _orderLogic.FinishOrder(new ChangeStatusBindingModel
+                    {
+                        OrderId = order.Id,
+                        ImplementerId = implementer.Id
+                    });
+                    // отдыхаем
+                    Thread.Sleep(implementer.PauseTime);
+                }
+                catch (Exception) { }
             }
             var ordersWithNeedMaterials = await Task.Run(() => _orderStorage.GetFilteredList(new OrderBindingModel { ImplementerId = implementer.Id, Status = Enums.OrderStatus.Требуются_материалы }));
             foreach (var order in ordersWithNeedMaterials)
             {
                 // делаем работу заново
-                Thread.Sleep(implementer.WorkingTime * rnd.Next(1, 5) * order.Count);
-                _orderLogic.FinishOrder(new ChangeStatusBindingModel
+                try
                 {
-                    OrderId = order.Id,
-                    ImplementerId = implementer.Id
-                });
-                // отдыхаем
-                Thread.Sleep(implementer.PauseTime);
+                    Thread.Sleep(implementer.WorkingTime * rnd.Next(1, 5) * order.Count);
+                    _orderLogic.FinishOrder(new ChangeStatusBindingModel
+                    {
+                        OrderId = order.Id,
+                        ImplementerId = implementer.Id
+                    });
+                    // отдыхаем
+                    Thread.Sleep(implementer.PauseTime);
+                }
+                catch (Exception) { }
             }
             await Task.Run(() =>
             {
