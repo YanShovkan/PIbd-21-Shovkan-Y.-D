@@ -54,6 +54,10 @@ namespace GiftShopView
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<ClientLogic>(new
            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IStorageStorage, StorageStorage>(new
+                HierarchicalLifetimeManager());
+            currentContainer.RegisterType<StorageLogic>(new
+                HierarchicalLifetimeManager());
             currentContainer.RegisterType<IImplementerStorage, ImplementerStorage>(new
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<ImplementerStorage>(new
@@ -62,6 +66,9 @@ namespace GiftShopView
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<MailLogic>(new
            HierarchicalLifetimeManager());
+                HierarchicalLifetimeManager());
+            currentContainer.RegisterType<ImplementerLogic>(new
+                HierarchicalLifetimeManager());
             currentContainer.RegisterType<ReportLogic>(new
            HierarchicalLifetimeManager());
 

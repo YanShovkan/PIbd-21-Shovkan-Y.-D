@@ -85,6 +85,18 @@ namespace GiftShopView
             form.ShowDialog();
         }
 
+        private void складыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormStorages>();
+            form.ShowDialog();
+        }
+
+        private void пополнитьСкладToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormStorageReplenishment>();
+            form.ShowDialog();
+        }
+
         private void списокМатериаловToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (var dialog = new SaveFileDialog { Filter = "docx|*.docx" })
@@ -134,6 +146,34 @@ namespace GiftShopView
         private void письмаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormMessages>();
+            form.ShowDialog();
+        }
+
+        private void списокСкладовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var dialog = new SaveFileDialog { Filter = "docx|*.docx" })
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    reportLogic.SaveStoragesToWordFile(new ReportBindingModel
+                    {
+                        FileName = dialog.FileName
+                    });
+
+                    MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void загруженностьСкладовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReportStorageMaterials>();
+            form.ShowDialog();
+        }
+
+        private void заказыЗаПериодToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReportOrdersByDate>();
             form.ShowDialog();
         }
     }
