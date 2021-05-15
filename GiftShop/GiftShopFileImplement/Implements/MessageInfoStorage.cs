@@ -9,11 +9,11 @@ namespace GiftShopFileImplement.Implements
 {
     public class MessageInfoStorage : IMessageInfoStorage
     {
-        private readonly FileDataFileSingleton source;
+        private readonly FileDataListSingleton source;
 
         public MessageInfoStorage()
         {
-            source = FileDataFileSingleton.GetInstance();
+            source = FileDataListSingleton.GetInstance();
         }
         public List<MessageInfoViewModel> GetFullList()
         {

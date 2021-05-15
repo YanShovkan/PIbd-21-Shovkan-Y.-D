@@ -169,11 +169,12 @@
     <Compile Include="Implements\GiftStorage.cs" />
     <Compile Include="Implements\ImplementerStorage.cs" />
     <Compile Include="Implements\MaterialStorage.cs" />
+    <Compile Include="Implements\MessageInfoStorage.cs" />
     <Compile Include="Implements\OrderStorage.cs" />
     <Compile Include="Implements\StorageStorage.cs" />
-    <Compile Include="Migrations\20210513165642_InitialCreate.cs" />
-    <Compile Include="Migrations\20210513165642_InitialCreate.designer.cs">
-      <DependentUpon>20210513165642_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\20210514193646_InitalCrat.cs" />
+    <Compile Include="Migrations\20210514193646_InitalCrat.designer.cs">
+      <DependentUpon>20210514193646_InitalCrat.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\GiftShopDatabaseModelSnapshot.cs" />
     <Compile Include="Models\Client.cs" />
@@ -181,6 +182,7 @@
     <Compile Include="Models\GiftMaterial.cs" />
     <Compile Include="Models\Implementer.cs" />
     <Compile Include="Models\Material.cs" />
+    <Compile Include="Models\MessageInfo.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Storage.cs" />
     <Compile Include="Models\StorageMaterial.cs" />
