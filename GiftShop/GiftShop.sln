@@ -1,23 +1,23 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.30225.117
+VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GiftShopBusinessLogic", "GiftShopBusinessLogic\GiftShopBusinessLogic.csproj", "{E5E68773-50D4-4916-913F-75FA922B8B58}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GiftShopClientApp", "GiftShopClientApp\GiftShopClientApp.csproj", "{EA085FEB-BA23-4472-8229-418FAA11477B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftShopDatabaseImplement", "GiftShopDatabaseImplement\GiftShopDatabaseImplement.csproj", "{5854898C-9135-45B0-B983-B39B1ADC4A3C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GiftShopRestApi", "GiftShopRestApi\GiftShopRestApi.csproj", "{FA992E58-D147-4081-A127-2A5F52FA9022}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftShopView", "GiftShopView\GiftShopView.csproj", "{40DA13FD-16A5-4487-AE4C-A8D72175780C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GiftShopStorageManagerApp", "GiftShopStorageManagerApp\GiftShopStorageManagerApp.csproj", "{9F7CE603-5711-4EED-87CD-04E7DEC91BCB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GiftShopRestApi", "GiftShopRestApi\GiftShopRestApi.csproj", "{2A3C4DE2-F46F-4BD1-ADB9-C88C15344909}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GiftShopListImplement", "GiftShopListImplement\GiftShopListImplement.csproj", "{ED7BE59B-E566-40A5-87E3-5577561FFFD2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftShopFileImplement", "GiftShopFileImplement\GiftShopFileImplement.csproj", "{74C74F45-3C80-41F6-B4D5-C7B46EE7AD9E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GiftShopListImplement", "GiftShopListImplement\GiftShopListImplement.csproj", "{93CE53A6-6F99-40A8-B922-B3949899A54D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftShopDatabaseImplement", "GiftShopDatabaseImplement\GiftShopDatabaseImplement.csproj", "{5854898C-9135-45B0-B983-B39B1ADC4A3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiftShopStorageManagerApp", "GiftShopStorageManagerApp\GiftShopStorageManagerApp.csproj", "{6F060120-01FC-4D70-8B72-FECD4613F674}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GiftShopClientApp", "GiftShopClientApp\GiftShopClientApp.csproj", "{20C6A4AB-38E0-48AE-8A20-86FCE6EB7C9B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GiftShopBusinessLogic", "GiftShopBusinessLogic\GiftShopBusinessLogic.csproj", "{735858D1-E676-4017-87B0-A4FCEAEE43CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,43 +25,43 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E5E68773-50D4-4916-913F-75FA922B8B58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E5E68773-50D4-4916-913F-75FA922B8B58}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E5E68773-50D4-4916-913F-75FA922B8B58}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E5E68773-50D4-4916-913F-75FA922B8B58}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EA085FEB-BA23-4472-8229-418FAA11477B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EA085FEB-BA23-4472-8229-418FAA11477B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EA085FEB-BA23-4472-8229-418FAA11477B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EA085FEB-BA23-4472-8229-418FAA11477B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5854898C-9135-45B0-B983-B39B1ADC4A3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5854898C-9135-45B0-B983-B39B1ADC4A3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5854898C-9135-45B0-B983-B39B1ADC4A3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5854898C-9135-45B0-B983-B39B1ADC4A3C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FA992E58-D147-4081-A127-2A5F52FA9022}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FA992E58-D147-4081-A127-2A5F52FA9022}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FA992E58-D147-4081-A127-2A5F52FA9022}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FA992E58-D147-4081-A127-2A5F52FA9022}.Release|Any CPU.Build.0 = Release|Any CPU
 		{40DA13FD-16A5-4487-AE4C-A8D72175780C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{40DA13FD-16A5-4487-AE4C-A8D72175780C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40DA13FD-16A5-4487-AE4C-A8D72175780C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40DA13FD-16A5-4487-AE4C-A8D72175780C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F7CE603-5711-4EED-87CD-04E7DEC91BCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F7CE603-5711-4EED-87CD-04E7DEC91BCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F7CE603-5711-4EED-87CD-04E7DEC91BCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F7CE603-5711-4EED-87CD-04E7DEC91BCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A3C4DE2-F46F-4BD1-ADB9-C88C15344909}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A3C4DE2-F46F-4BD1-ADB9-C88C15344909}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A3C4DE2-F46F-4BD1-ADB9-C88C15344909}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A3C4DE2-F46F-4BD1-ADB9-C88C15344909}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED7BE59B-E566-40A5-87E3-5577561FFFD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED7BE59B-E566-40A5-87E3-5577561FFFD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED7BE59B-E566-40A5-87E3-5577561FFFD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED7BE59B-E566-40A5-87E3-5577561FFFD2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{74C74F45-3C80-41F6-B4D5-C7B46EE7AD9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{74C74F45-3C80-41F6-B4D5-C7B46EE7AD9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74C74F45-3C80-41F6-B4D5-C7B46EE7AD9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74C74F45-3C80-41F6-B4D5-C7B46EE7AD9E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{93CE53A6-6F99-40A8-B922-B3949899A54D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93CE53A6-6F99-40A8-B922-B3949899A54D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93CE53A6-6F99-40A8-B922-B3949899A54D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93CE53A6-6F99-40A8-B922-B3949899A54D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6F060120-01FC-4D70-8B72-FECD4613F674}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6F060120-01FC-4D70-8B72-FECD4613F674}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6F060120-01FC-4D70-8B72-FECD4613F674}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6F060120-01FC-4D70-8B72-FECD4613F674}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5854898C-9135-45B0-B983-B39B1ADC4A3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5854898C-9135-45B0-B983-B39B1ADC4A3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5854898C-9135-45B0-B983-B39B1ADC4A3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5854898C-9135-45B0-B983-B39B1ADC4A3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20C6A4AB-38E0-48AE-8A20-86FCE6EB7C9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20C6A4AB-38E0-48AE-8A20-86FCE6EB7C9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20C6A4AB-38E0-48AE-8A20-86FCE6EB7C9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20C6A4AB-38E0-48AE-8A20-86FCE6EB7C9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{735858D1-E676-4017-87B0-A4FCEAEE43CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{735858D1-E676-4017-87B0-A4FCEAEE43CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{735858D1-E676-4017-87B0-A4FCEAEE43CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{735858D1-E676-4017-87B0-A4FCEAEE43CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A3528FF5-AB74-4135-B071-37133A355F3C}
+		SolutionGuid = {C5F0CE8C-3821-4503-A029-1F4C9DC2770D}
 	EndGlobalSection
 EndGlobal

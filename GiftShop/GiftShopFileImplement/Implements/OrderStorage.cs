@@ -1,6 +1,7 @@
 ﻿using GiftShopBusinessLogic.BindingModels;
 using GiftShopBusinessLogic.Interfaces;
 using GiftShopBusinessLogic.ViewModels;
+using GiftShopBusinessLogic.Enums;
 using GiftShopFileImplement.Models;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,11 @@ namespace GiftShopFileImplement.Implements
                !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date) ||
                (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >=
                model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date) ||
-               (model.ClientId.HasValue && rec.ClientId == model.ClientId)).Select(CreateModel).ToList();
+               (model.ClientId.HasValue && rec.ClientId == model.ClientId) ||
+               (model.FreeOrders.HasValue && model.FreeOrders.Value && rec.Status == OrderStatus.Принят) ||
+               (model.ImplementerId.HasValue && rec.ImplementerId == model.ImplementerId && rec.Status == OrderStatus.Выполняется))
+               .Select(CreateModel)
+               .ToList();
         }
 
         public OrderViewModel GetElement(OrderBindingModel model)
@@ -106,7 +111,8 @@ namespace GiftShopFileImplement.Implements
         private Order CreateModel(OrderBindingModel model, Order order)
         {
             order.GiftId = model.GiftId;
-            order.ClientId = Convert.ToInt32(model.ClientId);
+            order.ClientId = model.ClientId.Value;
+            order.ImplementerId = model.ImplementerId.Value;
             order.Count = model.Count;
             order.Status = model.Status;
             order.Sum = model.Sum;
@@ -129,9 +135,11 @@ namespace GiftShopFileImplement.Implements
             {
                 Id = order.Id,
                 GiftId = order.GiftId,
-                ClientId = order.ClientId,
+                ClientId = order.ClientId.Value,
                 ClientFIO = source.Clients.FirstOrDefault(client => client.Id == order.ClientId)?.ClientFIO,
                 GiftName = source.Gifts.FirstOrDefault(gift => gift.Id == order.GiftId)?.GiftName,
+                ImplementerId = order.ImplementerId.Value,
+                ImplementerName = source.Implementers.FirstOrDefault(implementer => implementer.Id == order.ImplementerId)?.Name,
                 Count = order.Count,
                 Sum = order.Sum,
                 Status = order.Status,
