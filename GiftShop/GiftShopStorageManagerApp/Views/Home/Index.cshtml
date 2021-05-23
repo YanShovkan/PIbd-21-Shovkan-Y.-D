@@ -1,0 +1,65 @@
+﻿@using GiftShopBusinessLogic.ViewModels;
+@model List<StorageViewModel>
+
+    @{
+        ViewData["Title"] = "Home";
+    }
+
+    <div class="text-center">
+        <h1 class="display-4">Склады</h1>
+    </div>
+    <div class="text-center">
+        @{
+            if (Model == null)
+            {
+                <h3 class="display-4">Войдите</h3>
+                return;
+            }
+            <p>
+                <a asp-action="Create">Создать склад</a>
+            </p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Номер
+                        </th>
+                        <th>
+                            Название склада
+                        </th>
+                        <th>
+                            ФИО ответственного
+                        </th>
+                        <th>
+                            Дата создания
+                        </th>
+                        <th>
+                            Изменение
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StorageName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StorageManager)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateCreate)
+                            </td>
+                            <td>
+                                <a asp-action="Update" asp-route-storageId="@item.Id" asp-route-storageName="@item.StorageName" asp-route-storageManager="@item.StorageManager">Изменить</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>

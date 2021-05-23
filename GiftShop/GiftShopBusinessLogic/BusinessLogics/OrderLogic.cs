@@ -10,10 +10,14 @@ namespace GiftShopBusinessLogic.BusinessLogics
     public class OrderLogic
     {
         private readonly IOrderStorage _orderStorage;
-
-        public OrderLogic(IOrderStorage orderStorage)
+        private readonly IGiftStorage _giftStorage;
+        private readonly IStorageStorage _storageStorage;
+       
+        public OrderLogic(IOrderStorage orderStorage, IGiftStorage giftStorage, IStorageStorage storageStorage)
         {
             _orderStorage = orderStorage;
+            _giftStorage = giftStorage;
+            _storageStorage = storageStorage;
         }
 
         public List<OrderViewModel> Read(OrderBindingModel model)
@@ -53,6 +57,14 @@ namespace GiftShopBusinessLogic.BusinessLogics
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
+
+            var gift = _giftStorage.GetElement(new GiftBindingModel
+            {
+                Id = order.GiftId
+            });
+
+            _storageStorage.CheckMaterials(gift, order.Count);
+
             _orderStorage.Update(new OrderBindingModel
             {
                 Id = order.Id,
