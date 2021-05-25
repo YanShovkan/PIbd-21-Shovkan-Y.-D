@@ -45,18 +45,16 @@
                 </tbody>
             </table>
         }
-        <div style="display: flex; justify-content: space-between; max-width: 120px;">
+      
             @{
                 if ((Model.page - 1) >= 1)
                 {
-                    <a asp-action="Mail" asp-route-page="@(Model.page-1)">Prev @(Model.page-1)</a>
+                    <a asp-action="Mail" asp-route-page="@(Model.page-1)">Предыдущая @(Model.page-1)</a>
                 }
                 <span style="font-weight: bold;">@(Model.page)</span>
                 if (Model.hasNext)
                 {
-                    <a asp-action="Mail" asp-route-page="@(Model.page+1)">Next @(Model.page+1)</a>
+                    <a asp-action="Mail" asp-route-page="@(Model.page+1)">Следующая @(Model.page+1)</a>
                 }
             }
-        </div>
-
     </div>

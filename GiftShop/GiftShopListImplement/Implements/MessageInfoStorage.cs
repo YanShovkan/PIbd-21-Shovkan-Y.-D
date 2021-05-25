@@ -30,12 +30,18 @@ namespace GiftShopListImplement.Implements
                 return null;
             }
             List<MessageInfoViewModel> result = new List<MessageInfoViewModel>();
+            int i = 1;
             foreach (var message in source.Messages)
             {
                 if ((model.ClientId.HasValue && message.ClientId == model.ClientId) ||
                 (!model.ClientId.HasValue && message.DateDelivery.Date == model.DateDelivery.Date))
                 {
-                    result.Add(CreateModel(message));
+                    if (i > model.ToSkip && i <= model.ToTake)
+                    {
+                        result.Add(CreateModel(message));
+                    }
+                    i++;
+
                 }
             }
             if (result.Count > 0)
