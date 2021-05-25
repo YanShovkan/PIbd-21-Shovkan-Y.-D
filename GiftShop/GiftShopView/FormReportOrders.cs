@@ -2,6 +2,7 @@
 using GiftShopBusinessLogic.BusinessLogics;
 using Microsoft.Reporting.WinForms;
 using System;
+using System.Reflection;
 using System.Windows.Forms;
 using Unity;
 
@@ -34,11 +35,12 @@ namespace GiftShopView
                 " по " +
                dateTimePickerTo.Value.ToShortDateString());
                 reportViewer.LocalReport.SetParameters(parameter);
-                var dataSource = logic.GetOrders(new ReportBindingModel
-                {
-                    DateFrom = dateTimePickerFrom.Value,
-                    DateTo = dateTimePickerTo.Value
-                });
+                MethodInfo method = logic.GetType().GetMethod("GetOrders");
+                var dataSource = method.Invoke(logic, new object[] { new ReportBindingModel
+                        {
+                            DateFrom = dateTimePickerFrom.Value,
+                            DateTo = dateTimePickerTo.Value
+                        }});
                 ReportDataSource source = new ReportDataSource("DataSetOrders",
                dataSource);
                 reportViewer.LocalReport.DataSources.Add(source);
@@ -65,12 +67,14 @@ namespace GiftShopView
                 {
                     try
                     {
-                        logic.SaveOrdersToPdfFile(new ReportBindingModel
+                        MethodInfo method = logic.GetType().GetMethod("SaveOrdersToPdfFile");
+                        method.Invoke(logic, new object[] { new ReportBindingModel
                         {
-                            FileName = dialog.FileName,
+                             FileName = dialog.FileName,
                             DateFrom = dateTimePickerFrom.Value,
                             DateTo = dateTimePickerTo.Value
-                        });
+                        }});
+
                         MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                     }

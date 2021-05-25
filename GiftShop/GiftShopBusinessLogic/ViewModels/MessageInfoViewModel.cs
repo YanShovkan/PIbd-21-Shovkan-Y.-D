@@ -15,7 +15,7 @@ namespace GiftShopBusinessLogic.ViewModels
         [Column(title: "Дата письма", width: 100)]
         [DataMember]
         public DateTime DateDelivery { get; set; }
-        [Column(title: "Заголовок", width: 100)]
+        [Column(title: "Заголовок", width: 100, format: "D")]
         [DataMember]
         public string Subject { get; set; }
         [Column(title: "Текст", gridViewAutoSize: GridViewAutoSize.Fill)]
