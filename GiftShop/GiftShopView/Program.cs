@@ -1,9 +1,11 @@
 ﻿using GiftShopBusinessLogic.BusinessLogics;
-using GiftShopBusinessLogic.Interfaces;
 using GiftShopBusinessLogic.HelperModels;
 using GiftShopBusinessLogic.Attributes;
+using GiftShopBusinessLogic.Interfaces;
 using GiftShopDatabaseImplement.Implements;
 using System;
+using System.Configuration;
+using System.Threading;
 using System.Windows.Forms;
 using Unity;
 using Unity.Lifetime;
@@ -56,10 +58,14 @@ namespace GiftShopView
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<ClientLogic>(new
            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IStorageStorage, StorageStorage>(new
+                HierarchicalLifetimeManager());
+            currentContainer.RegisterType<StorageLogic>(new
+                HierarchicalLifetimeManager());
             currentContainer.RegisterType<IImplementerStorage, ImplementerStorage>(new
            HierarchicalLifetimeManager());
-            currentContainer.RegisterType<ImplementerStorage>(new
-           HierarchicalLifetimeManager());
+            currentContainer.RegisterType<ImplementerLogic>(new
+                HierarchicalLifetimeManager());
             currentContainer.RegisterType<IMessageInfoStorage, MessageInfoStorage>(new
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<GiftShopBackUpAbstractLogic, BackUpLogic>(new

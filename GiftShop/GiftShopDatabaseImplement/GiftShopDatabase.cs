@@ -9,14 +9,17 @@ namespace GiftShopDatabaseImplement
         {
             if (optionsBuilder.IsConfigured == false)
             {
-                optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-NSNKSRN;Initial Catalog=GiftShopDatabaseV7;Integrated Security=True;MultipleActiveResultSets=True;");
+                optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-NSNKSRN;Initial Catalog=GiftShopDatabaseWithStoragesV7;Integrated Security=True;MultipleActiveResultSets=True;");
             }
             base.OnConfiguring(optionsBuilder);
         }
+
         public virtual DbSet<Material> Materials { set; get; }
         public virtual DbSet<Gift> Gifts { set; get; }
         public virtual DbSet<GiftMaterial> GiftMaterials { set; get; }
         public virtual DbSet<Order> Orders { set; get; }
+        public virtual DbSet<Storage> Storages { set; get; }
+        public virtual DbSet<StorageMaterial> StorageMaterials { set; get; }
         public virtual DbSet<Client> Clients { set; get; }
         public virtual DbSet<Implementer> Implementers { set; get; }
         public virtual DbSet<MessageInfo> Messages { set; get; }

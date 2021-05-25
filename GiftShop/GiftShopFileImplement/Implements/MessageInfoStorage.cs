@@ -9,11 +9,11 @@ namespace GiftShopFileImplement.Implements
 {
     public class MessageInfoStorage : IMessageInfoStorage
     {
-        private readonly FileDataFileSingleton source;
+        private readonly FileDataListSingleton source;
 
         public MessageInfoStorage()
         {
-            source = FileDataFileSingleton.GetInstance();
+            source = FileDataListSingleton.GetInstance();
         }
         public List<MessageInfoViewModel> GetFullList()
         {
@@ -29,7 +29,9 @@ namespace GiftShopFileImplement.Implements
             }
             return source.Messages
             .Where(rec => (model.ClientId.HasValue && rec.ClientId == model.ClientId) ||
-                (!model.ClientId.HasValue && rec.DateDelivery.Date == model.DateDelivery.Date))
+            (!model.ClientId.HasValue && rec.DateDelivery.Date == model.DateDelivery.Date))
+            .Skip(model.ToSkip ?? 0)
+            .Take(model.ToTake ?? source.Messages.Count())
             .Select(CreateModel)
             .ToList();
         }

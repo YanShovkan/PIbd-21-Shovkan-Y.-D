@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GiftShopDatabaseImplement.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitalCrat : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -62,6 +62,21 @@ namespace GiftShopDatabaseImplement.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Materials", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Storages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StorageName = table.Column<string>(nullable: false),
+                    StorageManager = table.Column<string>(nullable: false),
+                    DateCreate = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Storages", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -151,6 +166,33 @@ namespace GiftShopDatabaseImplement.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "StorageMaterials",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StorageId = table.Column<int>(nullable: false),
+                    MaterialId = table.Column<int>(nullable: false),
+                    Count = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StorageMaterials", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_StorageMaterials_Materials_MaterialId",
+                        column: x => x.MaterialId,
+                        principalTable: "Materials",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_StorageMaterials_Storages_StorageId",
+                        column: x => x.StorageId,
+                        principalTable: "Storages",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_GiftMaterials_GiftId",
                 table: "GiftMaterials",
@@ -180,6 +222,16 @@ namespace GiftShopDatabaseImplement.Migrations
                 name: "IX_Orders_ImplementerId",
                 table: "Orders",
                 column: "ImplementerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StorageMaterials_MaterialId",
+                table: "StorageMaterials",
+                column: "MaterialId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StorageMaterials_StorageId",
+                table: "StorageMaterials",
+                column: "StorageId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -194,7 +246,7 @@ namespace GiftShopDatabaseImplement.Migrations
                 name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "Materials");
+                name: "StorageMaterials");
 
             migrationBuilder.DropTable(
                 name: "Clients");
@@ -204,6 +256,12 @@ namespace GiftShopDatabaseImplement.Migrations
 
             migrationBuilder.DropTable(
                 name: "Implementers");
+
+            migrationBuilder.DropTable(
+                name: "Materials");
+
+            migrationBuilder.DropTable(
+                name: "Storages");
         }
     }
 }

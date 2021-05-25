@@ -44,7 +44,8 @@ namespace GiftShopDatabaseImplement.Implements
                     (model.FreeOrders.HasValue && model.FreeOrders.Value && rec.Status ==
                     OrderStatus.Принят) ||
                      (model.ImplementerId.HasValue && rec.ImplementerId ==
-                    model.ImplementerId && rec.Status == OrderStatus.Выполняется))
+                    model.ImplementerId && rec.Status == OrderStatus.Выполняется) ||
+                (model.ImplementerId.HasValue && rec.ImplementerId == model.ImplementerId && rec.Status == OrderStatus.Требуются_материалы))
                     .Select(CreateModel).ToList();
             }
         }

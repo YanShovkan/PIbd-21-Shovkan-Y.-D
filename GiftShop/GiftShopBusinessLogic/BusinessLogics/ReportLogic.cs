@@ -10,23 +10,20 @@ namespace GiftShopBusinessLogic.BusinessLogics
 {
     public class ReportLogic
     {
-        private readonly IMaterialStorage _materialStorage;
+        private readonly IStorageStorage _storageStorage;
         private readonly IGiftStorage _giftStorage;
         private readonly IOrderStorage _orderStorage;
-        public ReportLogic(IGiftStorage giftStorage, IMaterialStorage
-      materialStorage, IOrderStorage orderStorage)
+
+        public ReportLogic(IGiftStorage giftStorage, IStorageStorage
+      storageStorage, IOrderStorage orderStorage)
         {
             _giftStorage = giftStorage;
-            _materialStorage = materialStorage;
+            _storageStorage = storageStorage;
             _orderStorage = orderStorage;
         }
-        /// <summary>
-        /// Получение списка компонент с указанием, в каких изделиях используются
-        /// </summary>
-        /// <returns></returns>104
+        
         public List<ReportGiftMaterialViewModel> GetGiftMaterial()
         {
-            var materials = _materialStorage.GetFullList();
             var gifts = _giftStorage.GetFullList();
             var list = new List<ReportGiftMaterialViewModel>();
             foreach (var gift in gifts)
@@ -37,28 +34,21 @@ namespace GiftShopBusinessLogic.BusinessLogics
                     Materials = new List<Tuple<string, int>>(),
                     TotalCount = 0
                 };
-                foreach (var material in materials)
-                {
-                    if (gift.GiftMaterials.ContainsKey(material.Id))
-                    {
-                        record.Materials.Add(new Tuple<string, int>(material.MaterialName, gift.GiftMaterials[material.Id].Item2));
-                        record.TotalCount += gift.GiftMaterials[material.Id].Item2;
-                    }
+                foreach (var material in gift.GiftMaterials)
+                { 
+                    record.Materials.Add(new Tuple<string, int>(material.Value.Item1, material.Value.Item2));
+                    record.TotalCount += material.Value.Item2;
                 }
                 list.Add(record);
             }
             return list;
         }
-        /// Получение списка заказов за определенный период
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
+
         public List<ReportOrdersViewModel> GetOrders(ReportBindingModel model)
         {
             return _orderStorage.GetFilteredList(new OrderBindingModel
             {
-                DateFrom =
-           model.DateFrom,
+                DateFrom = model.DateFrom,
                 DateTo = model.DateTo
             })
             .Select(x => new ReportOrdersViewModel
@@ -71,10 +61,7 @@ namespace GiftShopBusinessLogic.BusinessLogics
             })
            .ToList();
         }
-        /// <summary>
-        /// Сохранение компонент в файл-Word
-        /// </summary>
-        /// <param name="model"></param>
+
         public void SaveMaterialsToWordFile(ReportBindingModel model)
         {
             SaveToWord.CreateDoc(new WordInfo
@@ -84,10 +71,7 @@ namespace GiftShopBusinessLogic.BusinessLogics
                 Gifts = _giftStorage.GetFullList()
             });
         }
-        /// <summary>
-        /// Сохранение компонент с указаеним продуктов в файл-Excel
-        /// </summary>
-        /// <param name="model"></param>
+
         public void SaveGiftsMaterialsToExcelFile(ReportBindingModel model)
         {
             SaveToExcel.CreateDoc(new ExcelInfo
@@ -97,10 +81,7 @@ namespace GiftShopBusinessLogic.BusinessLogics
                 GiftMaterials = GetGiftMaterial()
             });
         }
-        /// <summary>
-        /// Сохранение заказов в файл-Pdf
-        /// </summary>
-        /// <param name="model"></param>
+ 
         public void SaveOrdersToPdfFile(ReportBindingModel model)
         {
             SaveToPdf.CreateDoc(new PdfInfo
@@ -112,5 +93,71 @@ namespace GiftShopBusinessLogic.BusinessLogics
                 Orders = GetOrders(model)
             });
         }
+
+        public List<ReportStorageMaterialsViewModel> GetStorageMaterials()
+        {
+            var storages = _storageStorage.GetFullList();
+            var list = new List<ReportStorageMaterialsViewModel>();
+            foreach (var storage in storages)
+            {
+                var record = new ReportStorageMaterialsViewModel
+                {
+                    StorageName = storage.StorageName,
+                    Materials = new List<Tuple<string, int>>(),
+                    TotalCount = 0
+                };
+                foreach (var material in storage.StorageMaterials)
+                {
+                    record.Materials.Add(new Tuple<string, int>(material.Value.Item1, material.Value.Item2));
+                    record.TotalCount += material.Value.Item2;
+                }
+                list.Add(record);
+            }
+            return list;
+        }
+
+        public List<OrderReportByDateViewModel> GetOrderReportByDate()
+        {
+            return _orderStorage.GetFullList()
+                .GroupBy(order => order.DateCreate.ToShortDateString())
+                .Select(rec => new OrderReportByDateViewModel
+                {
+                    Date = Convert.ToDateTime(rec.Key),
+                    Count = rec.Count(),
+                    Sum = rec.Sum(order => order.Sum)
+                })
+                .ToList();
+        }
+
+        public void SaveStoragesToWordFile(ReportBindingModel model)
+        {
+            SaveToWord.CreateStoragesDoc(new StorageWordInfo
+            {
+                FileName = model.FileName,
+                Title = "Список складов",
+                Storages = _storageStorage.GetFullList()
+            });
+        }
+
+        public void SaveStorageMaterialsToExcelFile(ReportBindingModel model)
+        {
+            SaveToExcel.CreateStoragesDoc(new StorageExcelInfo
+            {
+                FileName = model.FileName,
+                Title = "Список загруженности складов",
+                StorageMaterials = GetStorageMaterials()
+            });
+        }
+
+        public void SaveOrderReportByDateToPdfFile(ReportBindingModel model)
+        {
+            SaveToPdf.CreateDocOrderReportByDate(new PdfInfoOrderReportByDate
+            {
+                FileName = model.FileName,
+                Title = "Список заказов",
+                Orders = GetOrderReportByDate()
+            });
+        }
+
     }
 }

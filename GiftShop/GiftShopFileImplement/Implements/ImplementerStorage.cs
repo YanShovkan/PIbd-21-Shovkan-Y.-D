@@ -10,11 +10,11 @@ namespace GiftShopFileImplement.Implements
 {
     class ImplementerStorage : IImplementerStorage
     {
-        private readonly FileDataFileSingleton source;
+        private readonly FileDataListSingleton source;
 
         public ImplementerStorage()
         {
-            source = FileDataFileSingleton.GetInstance();
+            source = FileDataListSingleton.GetInstance();
         }
 
         public List<ImplementerViewModel> GetFullList()

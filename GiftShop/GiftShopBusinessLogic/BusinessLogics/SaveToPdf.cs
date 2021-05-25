@@ -31,8 +31,7 @@ namespace GiftShopBusinessLogic.BusinessLogics
             CreateRow(new PdfRowParameters
             {
                 Table = table,
-                Texts = new List<string> { "Дата заказа", "Подарок", "Количество",
-"Сумма", "Статус" },
+                Texts = new List<string> { "Дата заказа", "Подарок", "Количество", "Сумма", "Статус" },
                 Style = "NormalTitle",
                 ParagraphAlignment = ParagraphAlignment.Center
             });
@@ -104,5 +103,54 @@ order.GiftName, order.Count.ToString(), order.Sum.ToString(), order.Status.ToStr
             cellParameters.Cell.Format.Alignment = cellParameters.ParagraphAlignment;
             cellParameters.Cell.VerticalAlignment = VerticalAlignment.Center;
         }
+
+        public static void CreateDocOrderReportByDate(PdfInfoOrderReportByDate info)
+        {
+            Document document = new Document();
+            DefineStyles(document);
+
+            Section section = document.AddSection();
+
+            Paragraph paragraph = section.AddParagraph(info.Title);
+            paragraph.Format.SpaceAfter = "1cm";
+            paragraph.Format.Alignment = ParagraphAlignment.Center;
+            paragraph.Style = "NormalTitle";
+
+            var table = document.LastSection.AddTable();
+            List<string> columns = new List<string> { "8cm", "4cm", "4cm" };
+            foreach (var elem in columns)
+            {
+                table.AddColumn(elem);
+            }
+
+            CreateRow(new PdfRowParameters
+            {
+                Table = table,
+                Texts = new List<string> { "Дата", "Количество заказов", "Сумма" },
+                Style = "NormalTitle",
+                ParagraphAlignment = ParagraphAlignment.Center
+            });
+
+            foreach (var order in info.Orders)
+            {
+                CreateRow(new PdfRowParameters
+                {
+                    Table = table,
+                    Texts = new List<string> { order.Date.ToShortDateString(),
+                        order.Count.ToString(), order.Sum.ToString()},
+                    Style = "Normal",
+                    ParagraphAlignment = ParagraphAlignment.Left
+                });
+            }
+
+            PdfDocumentRenderer renderer = new PdfDocumentRenderer(true, PdfSharp.Pdf.PdfFontEmbedding.Always)
+            {
+                Document = document
+            };
+
+            renderer.RenderDocument();
+            renderer.PdfDocument.Save(info.FileName);
+        }
+
     }
 }
