@@ -22,6 +22,16 @@ namespace GiftShopClientApp.Controllers
             return
             View(APIClient.GetRequest<List<OrderViewModel>>($"api/main/getorders?clientId={Program.Client.Id}"));
         }
+        public IActionResult Mail(int page = 1)
+        {
+            if (Program.Client == null)
+            {
+                return Redirect("~/Home/Enter");
+            }
+            var temp = APIClient.GetRequest<(List<MessageInfoViewModel> list, bool hasNext)>($"api/client/getmessages?clientId={Program.Client.Id}&page={page}");
+            (List<MessageInfoViewModel>, bool, int) model = (temp.list, temp.hasNext, page);
+            return View(model);
+        }
         [HttpGet]
         public IActionResult Privacy()
         {
@@ -93,13 +103,13 @@ namespace GiftShopClientApp.Controllers
             if (!string.IsNullOrEmpty(login) && !string.IsNullOrEmpty(password)
             && !string.IsNullOrEmpty(fio))
             {
-                APIClient.PostRequest("api/client/register", new
-                ClientBindingModel
-                {
-                    ClientFIO = fio,
-                    Email = login,
-                    Password = password
-                });
+                APIClient.PostRequest("api/client/register",
+                    new ClientBindingModel
+                    {
+                        ClientFIO = fio,
+                        Email = login,
+                        Password = password
+                    });
                 Response.Redirect("Enter");
                 return;
             }

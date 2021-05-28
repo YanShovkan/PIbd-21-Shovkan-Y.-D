@@ -9,7 +9,7 @@ namespace GiftShopDatabaseImplement
         {
             if (optionsBuilder.IsConfigured == false)
             {
-                optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-NSNKSRN;Initial Catalog=GiftShopDatabaseWithStoragesV6;Integrated Security=True;MultipleActiveResultSets=True;");
+                optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-NSNKSRN;Initial Catalog=GiftShopDatabaseWithStoragesV7;Integrated Security=True;MultipleActiveResultSets=True;");
             }
             base.OnConfiguring(optionsBuilder);
         }
@@ -22,5 +22,6 @@ namespace GiftShopDatabaseImplement
         public virtual DbSet<StorageMaterial> StorageMaterials { set; get; }
         public virtual DbSet<Client> Clients { set; get; }
         public virtual DbSet<Implementer> Implementers { set; get; }
+        public virtual DbSet<MessageInfo> Messages { set; get; }
     }
 }

@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using GiftShopBusinessLogic.HelperModels;
+using System.Threading;
 
 namespace GiftShopRestApi
 {
@@ -26,14 +27,22 @@ namespace GiftShopRestApi
             services.AddTransient<IClientStorage, ClientStorage>();
             services.AddTransient<IOrderStorage, OrderStorage>();
             services.AddTransient<IGiftStorage, GiftStorage>();
+            services.AddTransient<IMessageInfoStorage, MessageInfoStorage>();
             services.AddTransient<IMaterialStorage, MaterialStorage>();
             services.AddTransient<OrderLogic>();
             services.AddTransient<ClientLogic>();
             services.AddTransient<GiftLogic>();
             services.AddTransient<StorageLogic>();
             services.AddTransient<MaterialLogic>();
+            services.AddTransient<MailLogic>();
             services.AddControllers().AddNewtonsoftJson();
-
+            MailLogic.MailConfig(new MailConfig
+            {
+                SmtpClientHost = "smtp.gmail.com",
+                SmtpClientPort = 587,
+                MailLogin = "shovkanyanforlab@gmail.com",
+                MailPassword = "yanshov2001"
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

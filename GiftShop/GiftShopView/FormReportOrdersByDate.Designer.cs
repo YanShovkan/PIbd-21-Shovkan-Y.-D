@@ -124,7 +124,6 @@ namespace GiftShopView
             this.Controls.Add(this.dateTimePickerFrom);
             this.Name = "FormReportOrdersByDate";
             this.Text = "FormReportOrdersByDate";
-            this.Load += new System.EventHandler(this.FormReportOrdersByDate_Load);
             ((System.ComponentModel.ISupportInitialize)(this.OrderReportByDateViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
