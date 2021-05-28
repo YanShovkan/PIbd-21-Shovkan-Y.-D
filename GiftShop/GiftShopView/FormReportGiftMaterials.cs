@@ -1,6 +1,9 @@
 ﻿using GiftShopBusinessLogic.BindingModels;
+using GiftShopBusinessLogic.ViewModels;
 using GiftShopBusinessLogic.BusinessLogics;
 using System;
+using System.Collections.Generic;
+using System.Reflection;
 using System.Windows.Forms;
 using Unity;
 
@@ -21,7 +24,8 @@ namespace GiftShopView
         {
             try
             {
-                var dict = logic.GetGiftMaterial();
+                MethodInfo method = logic.GetType().GetMethod("GetGiftMaterial");
+                var dict = (List<ReportGiftMaterialViewModel>)method.Invoke(logic, null);
                 if (dict != null)
                 {
                     dataGridView.Rows.Clear();
@@ -52,10 +56,12 @@ namespace GiftShopView
                 {
                     try
                     {
-                        logic.SaveGiftsMaterialsToExcelFile(new ReportBindingModel
+                        MethodInfo method = logic.GetType().GetMethod("SaveGiftsMaterialsToExcelFile");
+                        method.Invoke(logic, new object[] { new ReportBindingModel
                         {
                             FileName = dialog.FileName
-                        });
+                        }});
+
                         MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                     }

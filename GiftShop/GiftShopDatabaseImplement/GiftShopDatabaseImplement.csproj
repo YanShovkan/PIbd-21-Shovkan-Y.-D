@@ -165,6 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GiftShopDatabase.cs" />
+    <Compile Include="Implements\BackUpLogic.cs" />
     <Compile Include="Implements\ClientStorage.cs" />
     <Compile Include="Implements\GiftStorage.cs" />
     <Compile Include="Implements\ImplementerStorage.cs" />
