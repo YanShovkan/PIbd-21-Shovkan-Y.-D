@@ -90,8 +90,7 @@ namespace GiftShopView
             foreach (var prop in type.GetProperties())
             {
                 // получаем список атрибутов
-                var attributes =
-                prop.GetCustomAttributes(typeof(ColumnAttribute), true);
+                var attributes = prop.GetCustomAttributes(typeof(ColumnAttribute), true);
                 if (attributes != null && attributes.Length > 0)
                 {
                     foreach (var attr in attributes)
@@ -106,10 +105,10 @@ namespace GiftShopView
                                 ReadOnly = true,
                                 HeaderText = columnAttr.Title,
                                 Visible = columnAttr.Visible,
-                                Width = columnAttr.Width
+                                Width = columnAttr.Width,
+                                DefaultCellStyle = new DataGridViewCellStyle { Format = columnAttr.Format ?? "" }
                             };
-                            if (columnAttr.GridViewAutoSize !=
-                            GridViewAutoSize.None)
+                            if (columnAttr.GridViewAutoSize != GridViewAutoSize.None)
                             {
                                 column.AutoSizeMode =
                                 (DataGridViewAutoSizeColumnMode)Enum.Parse(typeof(DataGridViewAutoSizeColumnMode),
@@ -126,13 +125,11 @@ namespace GiftShopView
                 List<object> objs = new List<object>();
                 foreach (var conf in config)
                 {
-                    var value =
-                    elem.GetType().GetProperty(conf).GetValue(elem);
+                    var value = elem.GetType().GetProperty(conf).GetValue(elem);
                     objs.Add(value);
                 }
                 grid.Rows.Add(objs.ToArray());
             }
         }
-
     }
 }
